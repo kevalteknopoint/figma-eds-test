@@ -39,22 +39,6 @@
         {
           "component": "reference",
           "valueType": "string",
-          "name": "mobileBackgroundImage",
-          "label": "Background Image (Mobile)",
-          "multi": false,
-          "collapsedFieldOf": "backgroundImage"
-        },
-        {
-          "component": "text",
-          "valueType": "string",
-          "name": "mobileBackgroundImageAlt",
-          "label": "Background Image (Mobile) Alt",
-          "value": "",
-          "collapsedFieldOf": "backgroundImage"
-        },
-        {
-          "component": "reference",
-          "valueType": "string",
           "name": "emblemImage",
           "label": "Emblem Image",
           "multi": false,

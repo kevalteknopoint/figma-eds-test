@@ -30,15 +30,17 @@ const buildTitle = (cell) => {
   return heading;
 };
 
-const buildCta = (cell) => {
-  if (!cell) return null;
-  const link = cell.querySelector('a');
+const buildCta = (linkCell, textCell) => {
+  if (!linkCell) return null;
+  // ctaLink cell holds an <a> tag; ctaText cell holds the button label
+  const link = linkCell.querySelector('a');
   if (!link) return null;
+  // Override link text with explicit ctaText if authored
+  const ctaText = textCell?.textContent?.trim();
+  if (ctaText) link.textContent = ctaText;
   link.classList.add('button', 'hero-pwm__cta');
   return link;
 };
-
-const isImageOnlyCell = (cell) => !!cell?.querySelector('picture, img');
 
 // Strip EDS section/wrapper constraints so hero can be full-bleed
 const stripWrapperConstraints = (block) => {
@@ -69,21 +71,22 @@ export default function decorate(block) {
   // Must run before DOM teardown so closest() still traverses upward
   stripWrapperConstraints(block);
 
-  const rows = [...block.children].map((row) => [...row.children]);
+  // EDS xwalk model: all fields are COLUMNS in row[0]
+  // Col 0: backgroundImage  Col 1: backgroundImageAlt (collapsed)
+  // Col 2: emblemImage       Col 3: emblemImageAlt (collapsed)
+  // Col 4: heading           Col 5: ctaLink   Col 6: ctaText (collapsed)
+  const cols = block.firstElementChild
+    ? [...block.firstElementChild.children]
+    : [];
 
-  // Row 1 — background image (required)
-  const backgroundCell = rows.shift()?.[0];
+  const backgroundCell = cols[0] ?? null;
+  const emblemCell = cols[2] ?? null;
+  const headingCell = cols[4] ?? null;
+  const ctaCell = cols[5] ?? null;
+  const ctaTextCell = cols[6] ?? null;
+
   const backgroundPicture = buildPicture(backgroundCell);
   if (!backgroundPicture) return;
-
-  // Row 2 — emblem image (optional; only consume if cell is image-only)
-  const emblemCell = rows.length && isImageOnlyCell(rows[0][0]) ? rows.shift()[0] : null;
-
-  // Row 3 — heading text (required)
-  const headingCell = rows.shift()?.[0];
-
-  // Row 4 — CTA link (optional)
-  const ctaCell = rows.shift()?.[0];
 
   // Clear authored table DOM
   block.textContent = '';
@@ -129,7 +132,7 @@ export default function decorate(block) {
   const heading = buildTitle(headingCell);
   if (heading) content.append(heading);
 
-  const cta = buildCta(ctaCell);
+  const cta = buildCta(ctaCell, ctaTextCell);
   if (cta) content.append(cta);
 
   // ── Assemble final DOM ──────────────────────────────────

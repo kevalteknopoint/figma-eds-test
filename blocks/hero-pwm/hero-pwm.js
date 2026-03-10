@@ -32,12 +32,22 @@ const buildTitle = (cell) => {
 
 const buildCta = (linkCell, textCell) => {
   if (!linkCell) return null;
-  // ctaLink cell holds an <a> tag; ctaText cell holds the button label
-  const link = linkCell.querySelector('a');
-  if (!link) return null;
-  // Override link text with explicit ctaText if authored
-  const ctaText = textCell?.textContent?.trim();
-  if (ctaText) link.textContent = ctaText;
+
+  // Try to find an existing <a> tag first
+  let link = linkCell.querySelector('a');
+
+  if (!link) {
+    // xwalk renders ctaLink as plain text (the URL), not a real anchor
+    const href = linkCell.textContent?.trim();
+    if (!href) return null;
+    link = document.createElement('a');
+    link.href = href.startsWith('http') || href.startsWith('/') ? href : `https://${href}`;
+  }
+
+  // Set button label: prefer ctaText cell, then existing link text, then fallback
+  const label = textCell?.textContent?.trim() || link.textContent?.trim() || 'Learn More';
+  link.textContent = label;
+
   link.classList.add('button', 'hero-pwm__cta');
   return link;
 };
@@ -71,19 +81,20 @@ export default function decorate(block) {
   // Must run before DOM teardown so closest() still traverses upward
   stripWrapperConstraints(block);
 
-  // EDS xwalk model: all fields are COLUMNS in row[0]
-  // Col 0: backgroundImage  Col 1: backgroundImageAlt (collapsed)
-  // Col 2: emblemImage       Col 3: emblemImageAlt (collapsed)
-  // Col 4: heading           Col 5: ctaLink   Col 6: ctaText (collapsed)
-  const cols = block.firstElementChild
-    ? [...block.firstElementChild.children]
-    : [];
+  // EDS renders each model field as a separate ROW (div > div)
+  // Row 0: backgroundImage
+  // Row 1: emblemImage
+  // Row 2: heading
+  // Row 3: ctaLink  (plain text URL — no <a> tag in xwalk output)
+  // Row 4: ctaText  (button label)
+  const rows = [...block.children];
+  const getCell = (row) => row?.firstElementChild ?? null;
 
-  const backgroundCell = cols[0] ?? null;
-  const emblemCell = cols[2] ?? null;
-  const headingCell = cols[4] ?? null;
-  const ctaCell = cols[5] ?? null;
-  const ctaTextCell = cols[6] ?? null;
+  const backgroundCell = getCell(rows[0]);
+  const emblemCell = getCell(rows[1]);
+  const headingCell = getCell(rows[2]);
+  const ctaCell = getCell(rows[3]);
+  const ctaTextCell = getCell(rows[4]);
 
   const backgroundPicture = buildPicture(backgroundCell);
   if (!backgroundPicture) return;

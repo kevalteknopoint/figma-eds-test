@@ -25,28 +25,32 @@
           "valueType": "string",
           "name": "backgroundImage",
           "label": "Background Image",
-          "multi": false
+          "multi": false,
+          "collapse": true
         },
         {
           "component": "text",
           "valueType": "string",
-          "name": "backgroundAlt",
-          "label": "Background Alt",
-          "value": ""
+          "name": "backgroundImageAlt",
+          "label": "Background Image Alt",
+          "value": "",
+          "collapsedFieldOf": "backgroundImage"
         },
         {
           "component": "reference",
           "valueType": "string",
           "name": "emblemImage",
           "label": "Emblem Image",
-          "multi": false
+          "multi": false,
+          "collapse": true
         },
         {
           "component": "text",
           "valueType": "string",
-          "name": "emblemAlt",
-          "label": "Emblem Alt",
-          "value": ""
+          "name": "emblemImageAlt",
+          "label": "Emblem Image Alt",
+          "value": "",
+          "collapsedFieldOf": "emblemImage"
         },
         {
           "component": "richtext",
@@ -58,12 +62,14 @@
         {
           "component": "aem-content",
           "name": "ctaLink",
-          "label": "CTA Link"
+          "label": "CTA Link",
+          "collapse": true
         },
         {
           "component": "text",
           "name": "ctaText",
-          "label": "CTA Text"
+          "label": "CTA Text",
+          "collapsedFieldOf": "ctaLink"
         }
       ]
     }

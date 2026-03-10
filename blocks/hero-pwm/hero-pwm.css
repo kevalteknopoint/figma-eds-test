@@ -1,31 +1,40 @@
-.hero-pwm {
-  --hero-title-color-mobile: var(--pwm-white, #fff);
-  --hero-title-color-desktop: var(--pwm-blue-800, #2e2a94);
-  --hero-cta-bg: var(--pwm-blue-800, #2e2a94);
-  --hero-cta-color: var(--pwm-white, #fff);
-  --hero-overlay-mobile: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 55%);
-  --hero-overlay-desktop: linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 45%);
+/* ============================================================
+   PWM Hero Block — pixel-perfect per Figma
+   Desktop node 1:2854 | Mobile node 1:3491
+   Canvas: 1366px desktop / 376px mobile
+   ============================================================ */
 
+/* ── Design tokens (local fallbacks matching Figma) ───────── */
+.hero-pwm {
+  /* colours */
+  --hero-gold-900: #5d4f2e;
+  --hero-blue-800: #2e2a94;
+  --hero-white: #fff;
+
+  /* mobile overlay: full-width left-side gradient */
+  --hero-overlay: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 22.568%,
+    rgba(0, 0, 0, 0) 38.915%,
+    rgba(0, 0, 0, 0) 100%
+  );
+
+  /* ── Block container ──────────────────────────────────────── */
   position: relative;
-  display: flex;
-  align-items: center;
-  min-height: 520px;
-  padding: 120px 24px 80px;
+  width: 100%;
+
+  /* Mobile canvas: 664px tall (Figma node 1:3492 height) */
+  height: 664px;
   overflow: hidden;
-  color: var(--hero-title-color-mobile);
+  background-color: #111;
 }
 
+/* ── Full-bleed background image ──────────────────────────── */
 .hero-pwm__media {
   position: absolute;
   inset: 0;
   z-index: 0;
-}
-
-.hero-pwm__media::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--hero-overlay-mobile);
 }
 
 .hero-pwm__media picture,
@@ -33,87 +42,166 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: right center; /* face visible on right, matches Figma */
   display: block;
 }
 
-.hero-pwm__content {
-  position: relative;
+/* ── Gradient overlay ─────────────────────────────────────── */
+.hero-pwm__overlay {
+  position: absolute;
+  inset: 0;
   z-index: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  max-width: 720px;
+
+  /* Mobile: vertical gradient from solid black top → transparent
+     exact stops from Figma: 22.568% opaque, 38.915% transparent */
+  background: var(--hero-overlay);
 }
 
+/* ── Eternal knot emblem ──────────────────────────────────── */
+/* Mobile position: left ≈ 93px, top ≈ 242px; size 110×149px */
 .hero-pwm__emblem {
-  width: clamp(64px, 10vw, 110px);
-  height: auto;
+  position: absolute;
+  z-index: 2;
+  left: 93px;
+  top: 242px;
+  width: 110px;
+  height: 149px;
 }
 
 .hero-pwm__emblem img {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
 }
 
+/* ── Text + CTA content block ─────────────────────────────── */
+/* Mobile: left 37px, top 359px, width 248px, gap 24px */
+.hero-pwm__content {
+  position: absolute;
+  z-index: 3;
+  left: 37px;
+  top: 359px;
+  width: 248px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── Heading ──────────────────────────────────────────────── */
+/* Mobile: 28px / 32px, semibold 600, white */
 .hero-pwm__title {
   margin: 0;
-  font-family: var(--heading-font-family);
-  font-size: clamp(28px, 4vw, 40px);
-  line-height: 1.2;
+  font-family: var(--heading-font-family, sans-serif);
+  font-size: 28px;
+  line-height: 32px;
   font-weight: 600;
+  color: var(--hero-white);
+  letter-spacing: 0;
+}
+
+.hero-pwm__title p,
+.hero-pwm__title h1,
+.hero-pwm__title h2 {
+  margin: 0;
+  font: inherit;
   color: inherit;
 }
 
-.hero-pwm__title p {
-  margin: 0;
-}
-
+/* ── CTA Button ───────────────────────────────────────────── */
+/* Mobile: 125×40px, radius 4px, bg #2e2a94, 14px/19.7px semibold 600, white */
 .hero-pwm a.button.hero-pwm__cta {
-  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 125px;
+  height: 40px;
+  padding: 0 12px;
   margin: 0;
-  border-radius: 4px;
-  padding: 10px 16px;
   border: 0;
-  background-color: var(--hero-cta-bg);
-  color: var(--hero-cta-color);
-  font-size: 16px;
-  line-height: 1.2;
-  font-weight: 500;
+  border-radius: 4px;
+  background-color: var(--hero-blue-800);
+  color: var(--hero-white);
+  font-family: var(--body-font-family, sans-serif);
+  font-size: 14px;
+  line-height: 19.72px;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  box-sizing: border-box;
 }
 
 .hero-pwm a.button.hero-pwm__cta:hover,
 .hero-pwm a.button.hero-pwm__cta:focus {
-  background-color: var(--hero-cta-bg);
-  color: var(--hero-cta-color);
+  background-color: var(--hero-blue-800);
+  color: var(--hero-white);
   text-decoration: none;
+  opacity: 0.88;
 }
 
+/* ============================================================
+   DESKTOP  ≥ 900px
+   Canvas: 1366px wide, hero visible area ~787px tall
+   ============================================================ */
 @media (width >= 900px) {
   .hero-pwm {
-    min-height: 700px;
-    padding: 160px 32px 120px;
-    color: var(--hero-title-color-desktop);
+    /* Desktop hero height: image is ~952px but crop visible ≈ 787px */
+    height: 787px;
+
+    /* Desktop overlay: horizontal gradient left→right on full width */
+    --hero-overlay: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 1) 22.568%,
+      rgba(0, 0, 0, 0) 38.915%,
+      rgba(0, 0, 0, 0) 100%
+    );
   }
 
-  .hero-pwm__media::after {
-    background: var(--hero-overlay-desktop);
+  .hero-pwm__media img {
+    /* Desktop: image bleeds slightly above; shift up so face is centered */
+    object-position: center 20%;
   }
 
+  /* Desktop emblem: left ≈ 133px (calc(50% - 550px) on 1366px), top ≈ 242px */
+  .hero-pwm__emblem {
+    left: 133px;
+    top: 242px;
+    width: 110px;
+    height: 149px;
+  }
+
+  /* Desktop text block: left 79px, top 360px, width 723px, gap 40px */
   .hero-pwm__content {
-    gap: 32px;
+    left: 79px;
+    top: 360px;
+    width: 723px;
+    gap: 40px;
   }
 
+  /* Desktop heading: 40px / 48px, semibold 600, color #2e2a94 */
+  .hero-pwm__title {
+    font-size: 40px;
+    line-height: 48px;
+    font-weight: 600;
+    color: var(--hero-blue-800);
+  }
+
+  /* Desktop CTA: 48px tall, padding 20px 12px, font 18px/20px, weight 500 */
   .hero-pwm a.button.hero-pwm__cta {
-    padding: 12px 20px;
+    width: auto;
+    height: 48px;
+    padding: 20px 12px;
     font-size: 18px;
+    line-height: 20px;
+    font-weight: 500;
   }
 }
 
+/* ── Reduced motion ───────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .hero-pwm,
   .hero-pwm * {
-    scroll-behavior: auto;
     transition-duration: 0.01ms;
     animation-duration: 0.01ms;
   }

@@ -122,31 +122,63 @@ export default function decorate(block) {
   // Must run before DOM teardown so closest() still traverses upward
   stripWrapperConstraints(block);
 
-  // EDS renders each model field as a separate ROW (div > div)
-  // Row 0: backgroundImage        (desktop bg — required)
-  // Row 1: backgroundImageAlt     (collapsed text)
-  // Row 2: mobileBackgroundImage  (mobile bg — optional)
-  // Row 3: mobileBackgroundImageAlt (collapsed text)
-  // Row 4: emblemImage
-  // Row 5: emblemImageAlt         (collapsed text)
-  // Row 6: heading
-  // Row 7: ctaLink
-  // Row 8: ctaText
-  const rows = [...block.children];
-  const getCell = (row) => row?.firstElementChild ?? null;
+  // EDS only renders rows for fields that have content — alt text fields
+  // (collapsed) may be empty and produce no row. So we MUST detect rows
+  // by their content type rather than relying on fixed indices.
+  //
+  // Detection strategy:
+  //  - picture rows   → contain <picture> or <img>
+  //  - text-only rows → no picture/img, no <a>
+  //  - link rows      → contain <a> OR plain text that looks like a URL/path
+  //
+  // Expected authored order: desktopBg, [mobileBg], [emblem], heading, ctaUrl, ctaLabel
 
-  const backgroundCell = getCell(rows[0]);
-  // rows[1] = backgroundImageAlt (text only, not needed in JS)
-  const mobileBackgroundCell = getCell(rows[2]);
-  // rows[3] = mobileBackgroundImageAlt (text only)
-  const emblemCell = getCell(rows[4]);
-  // rows[5] = emblemImageAlt (text only)
-  const headingCell = getCell(rows[6]);
-  const ctaCell = getCell(rows[7]);
-  const ctaTextCell = getCell(rows[8]);
+  const rows = [...block.children].map((r) => r.firstElementChild);
 
-  // Build responsive picture: shows mobile image on <900px, desktop on ≥900px
-  const backgroundPicture = buildResponsivePicture(backgroundCell, mobileBackgroundCell);
+  const isImageRow = (cell) => !!(cell?.querySelector('picture, img'));
+  const isLinkRow = (cell) => {
+    if (!cell) return false;
+    if (cell.querySelector('a')) return true;
+    const text = cell.textContent?.trim() ?? '';
+    return /^(https?:\/\/|\/|www\.)/.test(text) || /\.\w{2,4}(\/|$)/.test(text);
+  };
+
+  // Collect all image rows in order
+  const imageRows = rows.filter(isImageRow);
+
+  let desktopBgCell = null;
+  let mobileBgCell = null;
+  let emblemCell = null;
+
+  // Classify each image row:
+  //   SVG source → emblem (decorative icon)
+  //   otherwise  → background photo (desktop first, then mobile)
+  imageRows.forEach((cell) => {
+    const isSvg = !!(
+      cell?.querySelector('source[type="image/svg+xml"]')
+      || cell?.querySelector('img[src*=".svg"]')
+    );
+
+    if (isSvg) {
+      emblemCell = cell;
+    } else if (!desktopBgCell) {
+      desktopBgCell = cell;
+    } else if (!mobileBgCell) {
+      mobileBgCell = cell;
+    }
+  });
+
+  // Find heading: first non-image, non-link row
+  const headingCell = rows.find((cell) => cell && !isImageRow(cell) && !isLinkRow(cell)) ?? null;
+
+  // Find CTA: first link-like row
+  const ctaLinkIndex = rows.findIndex((cell) => cell && isLinkRow(cell));
+  const ctaCell = ctaLinkIndex !== -1 ? rows[ctaLinkIndex] : null;
+  // CTA label: row immediately after the link row (plain text)
+  const ctaTextCell = ctaLinkIndex !== -1 ? (rows[ctaLinkIndex + 1] ?? null) : null;
+
+  // Build responsive picture: shows mobile on <900px, desktop on ≥900px
+  const backgroundPicture = buildResponsivePicture(desktopBgCell, mobileBgCell);
   if (!backgroundPicture) return;
 
   // Clear authored table DOM

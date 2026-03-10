@@ -214,5 +214,55 @@
         "valueType": "string"
       }
     ]
+  },
+  {
+    "id": "hero-pwm",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "backgroundImage",
+        "label": "Background Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "backgroundAlt",
+        "label": "Background Alt",
+        "value": ""
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "emblemImage",
+        "label": "Emblem Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "emblemAlt",
+        "label": "Emblem Alt",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "name": "heading",
+        "value": "",
+        "label": "Heading",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "ctaLink",
+        "label": "CTA Link"
+      },
+      {
+        "component": "text",
+        "name": "ctaText",
+        "label": "CTA Text"
+      }
+    ]
   }
 ]

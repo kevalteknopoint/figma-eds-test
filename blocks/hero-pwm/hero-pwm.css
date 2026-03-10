@@ -1,0 +1,120 @@
+.hero-pwm {
+  --hero-title-color-mobile: var(--pwm-white, #fff);
+  --hero-title-color-desktop: var(--pwm-blue-800, #2e2a94);
+  --hero-cta-bg: var(--pwm-blue-800, #2e2a94);
+  --hero-cta-color: var(--pwm-white, #fff);
+  --hero-overlay-mobile: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 55%);
+  --hero-overlay-desktop: linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 45%);
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 520px;
+  padding: 120px 24px 80px;
+  overflow: hidden;
+  color: var(--hero-title-color-mobile);
+}
+
+.hero-pwm__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-pwm__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--hero-overlay-mobile);
+}
+
+.hero-pwm__media picture,
+.hero-pwm__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-pwm__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 720px;
+}
+
+.hero-pwm__emblem {
+  width: clamp(64px, 10vw, 110px);
+  height: auto;
+}
+
+.hero-pwm__emblem img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hero-pwm__title {
+  margin: 0;
+  font-family: var(--heading-font-family);
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.2;
+  font-weight: 600;
+  color: inherit;
+}
+
+.hero-pwm__title p {
+  margin: 0;
+}
+
+.hero-pwm a.button.hero-pwm__cta {
+  align-self: flex-start;
+  margin: 0;
+  border-radius: 4px;
+  padding: 10px 16px;
+  border: 0;
+  background-color: var(--hero-cta-bg);
+  color: var(--hero-cta-color);
+  font-size: 16px;
+  line-height: 1.2;
+  font-weight: 500;
+}
+
+.hero-pwm a.button.hero-pwm__cta:hover,
+.hero-pwm a.button.hero-pwm__cta:focus {
+  background-color: var(--hero-cta-bg);
+  color: var(--hero-cta-color);
+  text-decoration: none;
+}
+
+@media (width >= 900px) {
+  .hero-pwm {
+    min-height: 700px;
+    padding: 160px 32px 120px;
+    color: var(--hero-title-color-desktop);
+  }
+
+  .hero-pwm__media::after {
+    background: var(--hero-overlay-desktop);
+  }
+
+  .hero-pwm__content {
+    gap: 32px;
+  }
+
+  .hero-pwm a.button.hero-pwm__cta {
+    padding: 12px 20px;
+    font-size: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-pwm,
+  .hero-pwm * {
+    scroll-behavior: auto;
+    transition-duration: 0.01ms;
+    animation-duration: 0.01ms;
+  }
+}

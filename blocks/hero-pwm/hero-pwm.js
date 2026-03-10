@@ -12,7 +12,7 @@ const buildPicture = (cell) => {
 const buildTitle = (cell) => {
   if (!cell) return null;
 
-  // Prefer an authored heading element; if none, wrap content in h2
+  // Prefer authored heading element; else wrap content in h2
   let heading = cell.querySelector('h1, h2, h3, h4, h5, h6');
   if (!heading) {
     heading = document.createElement('h2');
@@ -21,9 +21,10 @@ const buildTitle = (cell) => {
 
   heading.classList.add('hero-pwm__title');
 
-  // Ensure any bare <p> children keep their margin reset
+  // Reset any global paragraph margins inside the heading
   heading.querySelectorAll('p').forEach((p) => {
     p.style.margin = '0';
+    p.style.padding = '0';
   });
 
   return heading;
@@ -39,7 +40,35 @@ const buildCta = (cell) => {
 
 const isImageOnlyCell = (cell) => !!cell?.querySelector('picture, img');
 
+// Strip EDS section/wrapper constraints so hero can be full-bleed
+const stripWrapperConstraints = (block) => {
+  // .hero-pwm-container (direct parent)
+  const container = block.closest('.hero-pwm-container');
+  if (container) {
+    container.style.maxWidth = 'unset';
+    container.style.padding = '0';
+  }
+
+  // .hero-pwm-wrapper (grandparent)
+  const wrapper = block.closest('.hero-pwm-wrapper');
+  if (wrapper) {
+    wrapper.style.maxWidth = 'unset';
+    wrapper.style.padding = '0';
+    wrapper.style.margin = '0';
+  }
+
+  // The section itself may carry margin: 40px 0 from styles.css
+  const section = block.closest('main > .section');
+  if (section) {
+    section.style.margin = '0';
+    section.style.padding = '0';
+  }
+};
+
 export default function decorate(block) {
+  // Must run before DOM teardown so closest() still traverses upward
+  stripWrapperConstraints(block);
+
   const rows = [...block.children].map((row) => [...row.children]);
 
   // Row 1 — background image (required)
@@ -47,7 +76,7 @@ export default function decorate(block) {
   const backgroundPicture = buildPicture(backgroundCell);
   if (!backgroundPicture) return;
 
-  // Row 2 — emblem image (optional; only consume if cell contains image)
+  // Row 2 — emblem image (optional; only consume if cell is image-only)
   const emblemCell = rows.length && isImageOnlyCell(rows[0][0]) ? rows.shift()[0] : null;
 
   // Row 3 — heading text (required)
@@ -56,7 +85,7 @@ export default function decorate(block) {
   // Row 4 — CTA link (optional)
   const ctaCell = rows.shift()?.[0];
 
-  // ── Clear authored DOM ──────────────────────────────────
+  // Clear authored table DOM
   block.textContent = '';
 
   // ── 1. Background media ─────────────────────────────────
@@ -64,23 +93,22 @@ export default function decorate(block) {
   media.className = 'hero-pwm__media';
   media.append(backgroundPicture);
 
-  // Prioritise the LCP image
+  // LCP image optimisation
   const heroImg = media.querySelector('img');
   if (heroImg) {
     heroImg.loading = 'eager';
     heroImg.decoding = 'async';
     heroImg.fetchPriority = 'high';
-    // Ensure dimensions don't cause CLS — let CSS control sizing
     heroImg.removeAttribute('width');
     heroImg.removeAttribute('height');
   }
 
-  // ── 2. Gradient overlay (separate div for z-index control) ─
+  // ── 2. Gradient overlay (aria-hidden, z-index: 1) ───────
   const overlay = document.createElement('div');
   overlay.className = 'hero-pwm__overlay';
   overlay.setAttribute('aria-hidden', 'true');
 
-  // ── 3. Eternal knot emblem ──────────────────────────────
+  // ── 3. Eternal knot emblem (decorative, aria-hidden) ────
   let emblemEl = null;
   if (emblemCell) {
     const emblemPicture = buildPicture(emblemCell);
@@ -104,7 +132,7 @@ export default function decorate(block) {
   const cta = buildCta(ctaCell);
   if (cta) content.append(cta);
 
-  // ── Assemble ────────────────────────────────────────────
+  // ── Assemble final DOM ──────────────────────────────────
   block.append(media, overlay);
   if (emblemEl) block.append(emblemEl);
   block.append(content);

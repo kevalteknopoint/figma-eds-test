@@ -1,64 +1,87 @@
 /* ============================================================
    PWM Hero Block — pixel-perfect per Figma
    Desktop node 1:2854 | Mobile node 1:3491
-   Canvas: 1366px desktop / 376px mobile
    ============================================================ */
 
-/* ── Design tokens (local fallbacks matching Figma) ───────── */
+/* ── 1. Strip EDS wrapper constraints for full-bleed layout ── */
+/* EDS wraps blocks in .hero-pwm-wrapper > .hero-pwm-container
+   which inherits max-width/padding from styles.css — reset both */
+.hero-pwm-container {
+  max-width: unset;
+  padding: 0;
+}
+
+.hero-pwm-wrapper {
+  max-width: unset;
+  padding: 0;
+  margin: 0;
+}
+
+/* Also strip the default section margin that pushes hero down */
+main > .section:has(.hero-pwm),
+main > .section:first-of-type:has(.hero-pwm) {
+  margin: 0;
+  padding: 0;
+}
+
+/* ── 2. Block container ────────────────────────────────────── */
 .hero-pwm {
-  /* colours */
-  --hero-gold-900: #5d4f2e;
   --hero-blue-800: #2e2a94;
   --hero-white: #fff;
 
-  /* mobile overlay: full-width left-side gradient */
-  --hero-overlay: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 1) 22.568%,
-    rgba(0, 0, 0, 0) 38.915%,
-    rgba(0, 0, 0, 0) 100%
-  );
-
-  /* ── Block container ──────────────────────────────────────── */
   position: relative;
   width: 100%;
-
-  /* Mobile canvas: 664px tall (Figma node 1:3492 height) */
+  /* Mobile: 664px (Figma canvas height for node 1:3491) */
   height: 664px;
   overflow: hidden;
-  background-color: #111;
+  background-color: #0a0a0a;
+  /* Reset any margin EDS section may apply */
+  margin: 0;
 }
 
-/* ── Full-bleed background image ──────────────────────────── */
+/* ── 3. Full-bleed background image ─────────────────────────  */
 .hero-pwm__media {
   position: absolute;
   inset: 0;
   z-index: 0;
 }
 
-.hero-pwm__media picture,
+.hero-pwm__media picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .hero-pwm__media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: right center; /* face visible on right, matches Figma */
+  /* Mobile: face is on the right side of the photo */
+  object-position: right center;
   display: block;
 }
 
-/* ── Gradient overlay ─────────────────────────────────────── */
+/* ── 4. Gradient overlay ─────────────────────────────────────
+   Figma: linear gradient 180deg (top→down)
+   - solid black from 0% → 22.568%
+   - fades to transparent by 38.915%
+   Applied as separate div so it sits above image, below content */
 .hero-pwm__overlay {
   position: absolute;
   inset: 0;
   z-index: 1;
-
-  /* Mobile: vertical gradient from solid black top → transparent
-     exact stops from Figma: 22.568% opaque, 38.915% transparent */
-  background: var(--hero-overlay);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 22.568%,
+    rgba(0, 0, 0, 0) 38.915%,
+    rgba(0, 0, 0, 0) 100%
+  );
 }
 
-/* ── Eternal knot emblem ──────────────────────────────────── */
-/* Mobile position: left ≈ 93px, top ≈ 242px; size 110×149px */
+/* ── 5. Eternal knot emblem ──────────────────────────────────
+   Mobile: size 110×149px, left ~93px, top ~242px
+   (Figma: left = calc(50% - 95px) on 376px canvas = 93px) */
 .hero-pwm__emblem {
   position: absolute;
   z-index: 2;
@@ -68,14 +91,20 @@
   height: 149px;
 }
 
+.hero-pwm__emblem picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .hero-pwm__emblem img {
   width: 100%;
   height: 100%;
   display: block;
 }
 
-/* ── Text + CTA content block ─────────────────────────────── */
-/* Mobile: left 37px, top 359px, width 248px, gap 24px */
+/* ── 6. Text + CTA container ─────────────────────────────────
+   Mobile: left 37px, top 359px, width 248px, gap 24px */
 .hero-pwm__content {
   position: absolute;
   z-index: 3;
@@ -85,12 +114,15 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  align-items: flex-start;
 }
 
-/* ── Heading ──────────────────────────────────────────────── */
-/* Mobile: 28px / 32px, semibold 600, white */
+/* ── 7. Heading ──────────────────────────────────────────────
+   Mobile: 28px / 32px, weight 600, white
+   (Figma token: Heading/H5/Size=28px, Sub Header/Large/Line Height=32px) */
 .hero-pwm__title {
   margin: 0;
+  padding: 0;
   font-family: var(--heading-font-family, sans-serif);
   font-size: 28px;
   line-height: 32px;
@@ -99,17 +131,22 @@
   letter-spacing: 0;
 }
 
-.hero-pwm__title p,
-.hero-pwm__title h1,
-.hero-pwm__title h2 {
+/* Reset any EDS/global paragraph margins inside heading */
+.hero-pwm__title p {
   margin: 0;
-  font: inherit;
+  padding: 0;
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: inherit;
   color: inherit;
 }
 
-/* ── CTA Button ───────────────────────────────────────────── */
-/* Mobile: 125×40px, radius 4px, bg #2e2a94, 14px/19.7px semibold 600, white */
-.hero-pwm a.button.hero-pwm__cta {
+/* ── 8. CTA Button ───────────────────────────────────────────
+   Mobile: 125×40px, border-radius 4px, bg #2e2a94
+   Font: 14px, weight 600, white
+   Override global button styles (border-radius: 2.4em, border: 2px) */
+.hero-pwm a.button.hero-pwm__cta,
+.hero-pwm a.button.hero-pwm__cta:any-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -117,19 +154,21 @@
   height: 40px;
   padding: 0 12px;
   margin: 0;
-  border: 0;
+  border: none;
   border-radius: 4px;
   background-color: var(--hero-blue-800);
   color: var(--hero-white);
   font-family: var(--body-font-family, sans-serif);
   font-size: 14px;
-  line-height: 19.72px;
+  line-height: 1.4;
   font-weight: 600;
   text-align: center;
   white-space: nowrap;
   text-decoration: none;
   cursor: pointer;
   box-sizing: border-box;
+  /* Reset global link-hover underline */
+  -webkit-tap-highlight-color: transparent;
 }
 
 .hero-pwm a.button.hero-pwm__cta:hover,
@@ -138,41 +177,44 @@
   color: var(--hero-white);
   text-decoration: none;
   opacity: 0.88;
+  outline-offset: 2px;
 }
 
 /* ============================================================
    DESKTOP  ≥ 900px
-   Canvas: 1366px wide, hero visible area ~787px tall
+   Canvas: 1366px wide
    ============================================================ */
 @media (width >= 900px) {
   .hero-pwm {
-    /* Desktop hero height: image is ~952px but crop visible ≈ 787px */
+    /* Desktop visible hero height from Figma canvas */
     height: 787px;
+  }
 
-    /* Desktop overlay: horizontal gradient left→right on full width */
-    --hero-overlay: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 1) 0%,
-      rgba(0, 0, 0, 1) 22.568%,
-      rgba(0, 0, 0, 0) 38.915%,
+  /* Desktop: photo face is on right, image offset matches Figma */
+  .hero-pwm__media img {
+    object-position: center 20%;
+  }
+
+  /* Desktop overlay: same vertical gradient (dark top, transparent bottom)
+     but covers more to darken left side where text sits */
+  .hero-pwm__overlay {
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.78) 0%,
+      rgba(0, 0, 0, 0.78) 38%,
+      rgba(0, 0, 0, 0) 62%,
       rgba(0, 0, 0, 0) 100%
     );
   }
 
-  .hero-pwm__media img {
-    /* Desktop: image bleeds slightly above; shift up so face is centered */
-    object-position: center 20%;
-  }
-
-  /* Desktop emblem: left ≈ 133px (calc(50% - 550px) on 1366px), top ≈ 242px */
+  /* Desktop emblem: 110×149px
+     Figma: left = calc(50% - 550px) on 1366px → 133px; top = 242px */
   .hero-pwm__emblem {
     left: 133px;
     top: 242px;
-    width: 110px;
-    height: 149px;
   }
 
-  /* Desktop text block: left 79px, top 360px, width 723px, gap 40px */
+  /* Desktop content block: left 79px, top 360px, width 723px, gap 40px */
   .hero-pwm__content {
     left: 79px;
     top: 360px;
@@ -180,19 +222,20 @@
     gap: 40px;
   }
 
-  /* Desktop heading: 40px / 48px, semibold 600, color #2e2a94 */
+  /* Desktop heading: 40px / 48px, weight 600, color #2e2a94 (dark blue) */
   .hero-pwm__title {
     font-size: 40px;
     line-height: 48px;
-    font-weight: 600;
     color: var(--hero-blue-800);
   }
 
-  /* Desktop CTA: 48px tall, padding 20px 12px, font 18px/20px, weight 500 */
-  .hero-pwm a.button.hero-pwm__cta {
+  /* Desktop CTA: auto width, 48px tall, padding 20px 12px
+     Font: 18px / 20px, weight 500 */
+  .hero-pwm a.button.hero-pwm__cta,
+  .hero-pwm a.button.hero-pwm__cta:any-link {
     width: auto;
     height: 48px;
-    padding: 20px 12px;
+    padding: 0 20px;
     font-size: 18px;
     line-height: 20px;
     font-weight: 500;

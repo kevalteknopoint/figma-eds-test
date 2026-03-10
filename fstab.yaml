@@ -1,5 +1,5 @@
 mountpoints:
   /:
-    url: "https://author-p130360-e1272151.adobeaemcloud.com/bin/franklin.delivery/adobe-rnd/aem-boilerplate-xwalk/main"
+    url: "https://author-p48457-e880357.adobeaemcloud.com/bin/franklin.delivery/kevalteknopoint/figma-eds-test/main"
     type: "markup"
     suffix: ".html"

@@ -1,0 +1,330 @@
+/* nav-pwm block styles
+ *
+ * Figma specs:
+ *   Desktop: height 88px, bg #5d4f2e, sticky top:0, logo left at ~47px,
+ *            nav links right-aligned, white 14px Inter, Login btn white bg / gold text
+ *   Mobile:  height 60px, bg #5d4f2e, logo left, RHS: Login + Search + Hamburger
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+/* ── Reset bare wrapper div that gets margin: 40px 16px from styles.css ── */
+main > div:has(.nav-pwm) {
+  margin: 0 !important;
+  padding: 0 !important;
+  max-width: none !important;
+}
+
+/* ── Block root ──────────────────────────────────────────────────────────── */
+.nav-pwm {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  background-color: #5d4f2e;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ── Inner flex row ──────────────────────────────────────────────────────── */
+.nav-pwm__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 60px;           /* mobile height */
+  padding: 8px 16px;
+  box-sizing: border-box;
+}
+
+/* ── Logo ────────────────────────────────────────────────────────────────── */
+.nav-pwm__logo a,
+a[aria-label="Home"] {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.nav-pwm__logo img {
+  display: block;
+  height: 30px !important;   /* mobile: ~29.5px per Figma */
+  width: auto !important;
+  object-fit: contain;
+}
+
+/* ── Desktop nav links (hidden on mobile) ───────────────────────────────── */
+.nav-pwm__rhs {
+  display: none;
+  align-items: center;
+  gap: 0;
+}
+
+.nav-pwm__list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0;
+}
+
+.nav-pwm__item {
+  position: relative;
+}
+
+.nav-pwm__item > a,
+.nav-pwm__item > .nav-pwm__item-toggle {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 8px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  white-space: nowrap;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+}
+
+.nav-pwm__item-toggle {
+  /* Merged with the link label text visually */
+  order: 1;
+  padding-left: 2px !important;
+  padding-right: 8px !important;
+}
+
+/* Items that have the toggle: keep label and toggle side by side */
+.nav-pwm__item--has-dropdown {
+  display: flex;
+  align-items: center;
+}
+
+.nav-pwm__item--has-dropdown > a {
+  padding-right: 0;
+}
+
+.nav-pwm__chevron {
+  display: block;
+  transition: transform 0.2s ease;
+  stroke: #fff;
+}
+
+.nav-pwm__item--has-dropdown[aria-expanded="true"] .nav-pwm__chevron {
+  transform: rotate(180deg);
+}
+
+/* ── Dropdown menu ───────────────────────────────────────────────────────── */
+.nav-pwm__dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 180px;
+  background-color: #5d4f2e;
+  padding: 8px 0;
+  list-style: none;
+  margin: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.nav-pwm__item--has-dropdown[aria-expanded="true"] .nav-pwm__dropdown {
+  display: block;
+}
+
+.nav-pwm__dropdown li a {
+  display: block;
+  padding: 8px 16px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.nav-pwm__dropdown li a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Search button ───────────────────────────────────────────────────────── */
+.nav-pwm__search-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  color: #fff;
+  width: 36px;
+  height: 36px;
+}
+
+.nav-pwm__search-btn svg {
+  stroke: #fff;
+}
+
+/* ── Login button ────────────────────────────────────────────────────────── */
+.nav-pwm__login {
+  display: flex;
+  align-items: center;
+}
+
+.nav-pwm__login-btn,
+a.nav-pwm__login-btn:any-link {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px !important;
+  background-color: #fff !important;
+  color: #5d4f2e !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  line-height: 16px !important;
+  text-decoration: none !important;
+  border-radius: 4px !important;
+  border: none !important;
+  white-space: nowrap;
+  cursor: pointer;
+  margin: 0 !important;
+}
+
+.nav-pwm__login-chevron {
+  display: flex;
+  align-items: center;
+}
+
+.nav-pwm__login-chevron svg {
+  stroke: #5d4f2e;
+}
+
+/* ── Mobile icons row (visible on mobile) ───────────────────────────────── */
+.nav-pwm__mobile-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ── Hamburger button ────────────────────────────────────────────────────── */
+.nav-pwm__hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  width: 44px;
+  height: 44px;
+}
+
+.nav-pwm__hamburger-line {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: #fff;
+  border-radius: 2px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Hamburger → X when open */
+.nav-pwm__hamburger[aria-expanded="true"] .nav-pwm__hamburger-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-pwm__hamburger[aria-expanded="true"] .nav-pwm__hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-pwm__hamburger[aria-expanded="true"] .nav-pwm__hamburger-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Mobile drawer ───────────────────────────────────────────────────────── */
+.nav-pwm__drawer {
+  display: none;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 60px);
+  background-color: #5d4f2e;
+  overflow-y: auto;
+  z-index: 99;
+  padding: 24px 16px;
+  box-sizing: border-box;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nav-pwm__drawer--open {
+  display: flex;
+}
+
+/* Mobile list in drawer */
+.nav-pwm__links--mobile .nav-pwm__list {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  width: 100%;
+}
+
+.nav-pwm__links--mobile .nav-pwm__item {
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.nav-pwm__links--mobile .nav-pwm__item > a {
+  padding: 14px 8px;
+  font-size: 16px;
+}
+
+.nav-pwm__links--mobile .nav-pwm__dropdown {
+  position: static;
+  box-shadow: none;
+  padding: 0 0 8px 16px;
+  background: none;
+}
+
+.nav-pwm__login-btn--mobile {
+  margin-top: 20px !important;
+  width: fit-content;
+}
+
+/* ── Desktop overrides (≥ 900px) ─────────────────────────────────────────── */
+@media (min-width: 900px) {
+  .nav-pwm__inner {
+    height: 88px;
+    padding: 8px 47px;        /* logo starts at ~47px from left per Figma */
+    justify-content: space-between;
+  }
+
+  .nav-pwm__logo img {
+    height: 48px !important;  /* desktop: 48px per Figma */
+  }
+
+  /* Show desktop RHS, hide mobile icons */
+  .nav-pwm__rhs {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .nav-pwm__mobile-icons {
+    display: none;
+  }
+
+  .nav-pwm__drawer {
+    display: none !important;
+  }
+
+  .nav-pwm__links {
+    display: flex;
+  }
+}

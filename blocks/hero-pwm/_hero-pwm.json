@@ -24,7 +24,7 @@
           "component": "reference",
           "valueType": "string",
           "name": "backgroundImage",
-          "label": "Background Image",
+          "label": "Background Image (Desktop)",
           "multi": false,
           "collapse": true
         },
@@ -33,6 +33,22 @@
           "valueType": "string",
           "name": "backgroundImageAlt",
           "label": "Background Image Alt",
+          "value": "",
+          "collapsedFieldOf": "backgroundImage"
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "mobileBackgroundImage",
+          "label": "Background Image (Mobile)",
+          "multi": false,
+          "collapsedFieldOf": "backgroundImage"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "mobileBackgroundImageAlt",
+          "label": "Background Image (Mobile) Alt",
           "value": "",
           "collapsedFieldOf": "backgroundImage"
         },

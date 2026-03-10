@@ -9,6 +9,47 @@ const buildPicture = (cell) => {
   return wrapper;
 };
 
+// Build a responsive <picture> that swaps between desktop and mobile images.
+// Uses a <source media="(max-width:899px)"> for mobile, desktop as <img> fallback.
+const buildResponsivePicture = (desktopCell, mobileCell) => {
+  const desktopPicture = buildPicture(desktopCell);
+  if (!desktopPicture) return null;
+
+  const mobilePicture = buildPicture(mobileCell);
+  const desktopImg = desktopPicture.querySelector('img');
+  const mobileImg = mobilePicture?.querySelector('img');
+
+  const picture = document.createElement('picture');
+
+  // Mobile sources — show on screens < 900px
+  if (mobileImg) {
+    // Carry over any <source> tags EDS added for the mobile image (webp etc.)
+    mobilePicture.querySelectorAll('source').forEach((src) => {
+      const s = src.cloneNode();
+      // Scope to mobile breakpoint
+      s.media = '(max-width: 899px)';
+      picture.append(s);
+    });
+    // Plain mobile fallback source (jpg/png)
+    const mobileSource = document.createElement('source');
+    mobileSource.srcset = mobileImg.src;
+    mobileSource.media = '(max-width: 899px)';
+    picture.append(mobileSource);
+  }
+
+  // Desktop sources — carry over EDS-generated <source> tags
+  desktopPicture.querySelectorAll('source').forEach((src) => {
+    picture.append(src.cloneNode());
+  });
+
+  // Desktop <img> is the final fallback (no media attr)
+  if (desktopImg) {
+    picture.append(desktopImg.cloneNode());
+  }
+
+  return picture;
+};
+
 const buildTitle = (cell) => {
   if (!cell) return null;
 
@@ -82,21 +123,30 @@ export default function decorate(block) {
   stripWrapperConstraints(block);
 
   // EDS renders each model field as a separate ROW (div > div)
-  // Row 0: backgroundImage
-  // Row 1: emblemImage
-  // Row 2: heading
-  // Row 3: ctaLink  (plain text URL — no <a> tag in xwalk output)
-  // Row 4: ctaText  (button label)
+  // Row 0: backgroundImage        (desktop bg — required)
+  // Row 1: backgroundImageAlt     (collapsed text)
+  // Row 2: mobileBackgroundImage  (mobile bg — optional)
+  // Row 3: mobileBackgroundImageAlt (collapsed text)
+  // Row 4: emblemImage
+  // Row 5: emblemImageAlt         (collapsed text)
+  // Row 6: heading
+  // Row 7: ctaLink
+  // Row 8: ctaText
   const rows = [...block.children];
   const getCell = (row) => row?.firstElementChild ?? null;
 
   const backgroundCell = getCell(rows[0]);
-  const emblemCell = getCell(rows[1]);
-  const headingCell = getCell(rows[2]);
-  const ctaCell = getCell(rows[3]);
-  const ctaTextCell = getCell(rows[4]);
+  // rows[1] = backgroundImageAlt (text only, not needed in JS)
+  const mobileBackgroundCell = getCell(rows[2]);
+  // rows[3] = mobileBackgroundImageAlt (text only)
+  const emblemCell = getCell(rows[4]);
+  // rows[5] = emblemImageAlt (text only)
+  const headingCell = getCell(rows[6]);
+  const ctaCell = getCell(rows[7]);
+  const ctaTextCell = getCell(rows[8]);
 
-  const backgroundPicture = buildPicture(backgroundCell);
+  // Build responsive picture: shows mobile image on <900px, desktop on ≥900px
+  const backgroundPicture = buildResponsivePicture(backgroundCell, mobileBackgroundCell);
   if (!backgroundPicture) return;
 
   // Clear authored table DOM

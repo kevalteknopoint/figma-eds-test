@@ -3,25 +3,38 @@
    Desktop node 1:2854 | Mobile node 1:3491
    ============================================================ */
 
+/* ── 0. Load Inter font (Figma uses Inter, not Roboto Condensed) ── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 /* ── 1. Strip EDS wrapper constraints for full-bleed layout ── */
 /* EDS wraps blocks in .hero-pwm-wrapper > .hero-pwm-container
-   which inherits max-width/padding from styles.css — reset both */
+   which inherits max-width/padding from styles.css — reset both.
+   The live HTML is: <main><div><div class="hero-pwm"> so we also
+   target the bare <div> that gets main > div { margin: 40px 16px } */
 .hero-pwm-container {
-  max-width: unset;
-  padding: 0;
+  max-width: unset !important;
+  padding: 0 !important;
 }
 
 .hero-pwm-wrapper {
-  max-width: unset;
-  padding: 0;
-  margin: 0;
+  max-width: unset !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
-/* Also strip the default section margin that pushes hero down */
+/* Strip margin from section wrapper (both with and without .section class) */
 main > .section:has(.hero-pwm),
-main > .section:first-of-type:has(.hero-pwm) {
-  margin: 0;
-  padding: 0;
+main > .section:first-of-type:has(.hero-pwm),
+main > div:has(.hero-pwm) {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Also neutralise the inner wrapper div that gets max-width:1200px */
+main > div:has(.hero-pwm) > div {
+  max-width: unset !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 /* ── 2. Block container ────────────────────────────────────── */
@@ -52,9 +65,10 @@ main > .section:first-of-type:has(.hero-pwm) {
   height: 100%;
 }
 
+/* Override global: main img { height: auto } which breaks full-bleed */
 .hero-pwm__media img {
-  width: 100%;
-  height: 100%;
+  width: 100% !important;
+  height: 100% !important;
   object-fit: cover;
   /* Mobile: face is on the right side of the photo */
   object-position: right center;
@@ -119,11 +133,12 @@ main > .section:first-of-type:has(.hero-pwm) {
 
 /* ── 7. Heading ──────────────────────────────────────────────
    Mobile: 28px / 32px, weight 600, white
-   (Figma token: Heading/H5/Size=28px, Sub Header/Large/Line Height=32px) */
+   Font: Inter (Figma) — loaded via @import above
+   Override global h2 { margin-top: 0.8em; font-family: roboto-condensed } */
 .hero-pwm__title {
-  margin: 0;
+  margin: 0 !important;
   padding: 0;
-  font-family: var(--heading-font-family, sans-serif);
+  font-family: 'Inter', sans-serif !important;
   font-size: 28px;
   line-height: 32px;
   font-weight: 600;
@@ -133,49 +148,50 @@ main > .section:first-of-type:has(.hero-pwm) {
 
 /* Reset any EDS/global paragraph margins inside heading */
 .hero-pwm__title p {
-  margin: 0;
+  margin: 0 !important;
   padding: 0;
   font-size: inherit;
   line-height: inherit;
   font-weight: inherit;
   color: inherit;
+  font-family: inherit;
 }
 
 /* ── 8. CTA Button ───────────────────────────────────────────
    Mobile: 125×40px, border-radius 4px, bg #2e2a94
-   Font: 14px, weight 600, white
-   Override global button styles (border-radius: 2.4em, border: 2px) */
+   Font: Inter 14px weight 600 white
+   Override global: a.button { border-radius:2.4em; margin:12px 0;
+   border:2px solid; padding:0.5em 1.2em; background:#3b63fb } */
 .hero-pwm a.button.hero-pwm__cta,
 .hero-pwm a.button.hero-pwm__cta:any-link {
-  display: inline-flex;
+  display: inline-flex !important;
   align-items: center;
   justify-content: center;
   width: 125px;
   height: 40px;
-  padding: 0 12px;
-  margin: 0;
-  border: none;
-  border-radius: 4px;
-  background-color: var(--hero-blue-800);
-  color: var(--hero-white);
-  font-family: var(--body-font-family, sans-serif);
-  font-size: 14px;
+  padding: 0 12px !important;
+  margin: 0 !important;
+  border: none !important;
+  border-radius: 4px !important;
+  background-color: var(--hero-blue-800) !important;
+  color: var(--hero-white) !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 14px !important;
   line-height: 1.4;
-  font-weight: 600;
+  font-weight: 600 !important;
   text-align: center;
   white-space: nowrap;
-  text-decoration: none;
+  text-decoration: none !important;
   cursor: pointer;
   box-sizing: border-box;
-  /* Reset global link-hover underline */
   -webkit-tap-highlight-color: transparent;
 }
 
 .hero-pwm a.button.hero-pwm__cta:hover,
 .hero-pwm a.button.hero-pwm__cta:focus {
-  background-color: var(--hero-blue-800);
-  color: var(--hero-white);
-  text-decoration: none;
+  background-color: var(--hero-blue-800) !important;
+  color: var(--hero-white) !important;
+  text-decoration: none !important;
   opacity: 0.88;
   outline-offset: 2px;
 }
@@ -226,19 +242,19 @@ main > .section:first-of-type:has(.hero-pwm) {
   .hero-pwm__title {
     font-size: 40px;
     line-height: 48px;
-    color: var(--hero-blue-800);
+    color: var(--hero-blue-800) !important;
   }
 
-  /* Desktop CTA: auto width, 48px tall, padding 20px 12px
-     Font: 18px / 20px, weight 500 */
+  /* Desktop CTA: auto width, 48px tall, padding 0 20px
+     Font: Inter 18px / 20px, weight 500 */
   .hero-pwm a.button.hero-pwm__cta,
   .hero-pwm a.button.hero-pwm__cta:any-link {
     width: auto;
     height: 48px;
-    padding: 0 20px;
-    font-size: 18px;
+    padding: 0 20px !important;
+    font-size: 18px !important;
     line-height: 20px;
-    font-weight: 500;
+    font-weight: 500 !important;
   }
 }
 

@@ -1,0 +1,155 @@
+/*
+ * PWM Design Tokens
+ * Single source of truth for all Motilal Oswal Private Wealth blocks.
+ *
+ * Naming convention:  --pwm-<category>-<role>[-variant]
+ * All blocks import this file via @import in their own CSS, so
+ * tokens are always available on the page regardless of block load order.
+ *
+ * Token mapping from Figma:
+ * ┌─────────────────────────────┬──────────────────────────────────┬───────────┐
+ * │ Figma variable              │ Token name                       │ Raw value │
+ * ├─────────────────────────────┼──────────────────────────────────┼───────────┤
+ * │ pwm-gold/100                │ --pwm-color-gold-100             │ #f8f3ef   │
+ * │ pwm-gold/200                │ --pwm-color-gold-200             │ #f0e6dc   │
+ * │ pwm-gold/500                │ --pwm-color-gold-500             │ #c2aa74   │
+ * │ pwm-gold/700                │ --pwm-color-gold-700             │ #866e44   │
+ * │ pwm-gold/800                │ --pwm-color-gold-800             │ #725e38   │
+ * │ blue-1/800 (primary)        │ --pwm-color-blue-primary         │ #2e2a94   │
+ * │ blue-1/600                  │ --pwm-color-blue-accent          │ #382ad7   │
+ * │ neutrals/white              │ --pwm-color-white                │ #ffffff   │
+ * │ neutrals/400                │ --pwm-color-neutral-400          │ #bdbdbd   │
+ * │ neutrals/700                │ --pwm-color-neutral-700          │ #616161   │
+ * │ button/primary/default      │ --pwm-color-btn-primary          │ #2e2a94   │
+ * │ text/white                  │ --pwm-color-text-inverse         │ #ffffff   │
+ * │ border-radius/4             │ --pwm-radius-sm                  │ 4px       │
+ * │ spacing/4                   │ --pwm-space-4                    │ 4px       │
+ * │ spacing/8                   │ --pwm-space-8                    │ 8px       │
+ * │ spacing/12                  │ --pwm-space-12                   │ 12px      │
+ * │ spacing/16                  │ --pwm-space-16                   │ 16px      │
+ * │ spacing/20                  │ --pwm-space-20                   │ 20px      │
+ * │ spacing/24                  │ --pwm-space-24                   │ 24px      │
+ * │ spacing/32                  │ --pwm-space-32                   │ 32px      │
+ * │ spacing/40                  │ --pwm-space-40                   │ 40px      │
+ * │ spacing/48                  │ --pwm-space-48                   │ 48px      │
+ * │ spacing/60                  │ --pwm-space-60                   │ 60px      │
+ * │ Heading/H2/Size             │ --pwm-font-size-h2               │ 40px      │
+ * │ Heading/H2/Line Height      │ --pwm-font-lh-h2                 │ 48px      │
+ * │ Heading/H3/Size             │ --pwm-font-size-h3               │ 36px      │
+ * │ Heading/H3/Line Height      │ --pwm-font-lh-h3                 │ 44px      │
+ * │ Heading/H6/Size             │ --pwm-font-size-h6               │ 24px      │
+ * │ Heading/H6/Line Height      │ --pwm-font-lh-h6                 │ 28px      │
+ * │ Heading/PWM H4/Size         │ --pwm-font-size-pwmh4            │ 32px      │
+ * │ Heading/PWM H4/Line Height  │ --pwm-font-lh-pwmh4              │ 40px      │
+ * │ Heading/PWM H6/Size         │ --pwm-font-size-pwmh6            │ 24px      │
+ * │ Heading/PWM H6/Line Height  │ --pwm-font-lh-pwmh6              │ 28px      │
+ * │ Sub Header/Medium/Size      │ --pwm-font-size-subheader        │ 20px      │
+ * │ Sub Header/Medium/LH        │ --pwm-font-lh-subheader          │ 28px      │
+ * │ Body/Large-medium/Size      │ --pwm-font-size-body-lg          │ 18px      │
+ * │ Body/Large-medium/LH        │ --pwm-font-lh-body-lg            │ 24px      │
+ * │ Body/Medium-medium/Size     │ --pwm-font-size-body-md          │ 16px      │
+ * │ Body/Medium-medium/LH       │ --pwm-font-lh-body-md            │ 20px      │
+ * │ Body/Medium-regular/Size    │ --pwm-font-size-body-md          │ 16px      │
+ * │ Body/Medium-regular/LH      │ --pwm-font-lh-body-md            │ 20px      │
+ * │ Body/Small-regular/Size     │ --pwm-font-size-body-sm          │ 14px      │
+ * │ Body/Small-regular/LH       │ --pwm-font-lh-body-sm            │ 16px      │
+ * │ Label/Large/Line Height     │ --pwm-font-lh-label-lg           │ 20px      │
+ * └─────────────────────────────┴──────────────────────────────────┴───────────┘
+ */
+
+:root {
+  /* ── Font families ─────────────────────────────────────────── */
+  --pwm-font-title: 'Inter', sans-serif;
+  --pwm-font-body: 'Inter', sans-serif;
+
+  /* ── Font weights ──────────────────────────────────────────── */
+  --pwm-fw-regular: 400;
+  --pwm-fw-medium: 500;
+  --pwm-fw-semibold: 600;
+
+  /* ── Font sizes ────────────────────────────────────────────── */
+  --pwm-font-size-h2: 40px;
+  --pwm-font-size-h3: 36px;
+  --pwm-font-size-h6: 24px;
+  --pwm-font-size-pwmh4: 32px;
+  --pwm-font-size-pwmh6: 24px;
+  --pwm-font-size-subheader: 20px;
+  --pwm-font-size-body-lg: 18px;
+  --pwm-font-size-body-md: 16px;
+  --pwm-font-size-body-sm: 14px;
+
+  /* ── Line heights ──────────────────────────────────────────── */
+  --pwm-font-lh-h2: 48px;
+  --pwm-font-lh-h3: 44px;
+  --pwm-font-lh-h6: 28px;
+  --pwm-font-lh-pwmh4: 40px;
+  --pwm-font-lh-pwmh6: 28px;
+  --pwm-font-lh-subheader: 28px;
+  --pwm-font-lh-body-lg: 24px;
+  --pwm-font-lh-body-md: 20px;
+  --pwm-font-lh-body-sm: 16px;
+  --pwm-font-lh-label-lg: 20px;
+
+  /* ── Mobile overrides (320–767px) ──────────────────────────── */
+  --pwm-font-size-h2-mobile: 34px;
+  --pwm-font-lh-h2-mobile: 40px;
+  --pwm-font-size-pwmh4-mobile: 20px;
+  --pwm-font-lh-pwmh4-mobile: 24px;
+
+  /* ── Colors ────────────────────────────────────────────────── */
+  --pwm-color-gold-100: #f8f3ef;
+  --pwm-color-gold-200: #f0e6dc;
+  --pwm-color-gold-500: #c2aa74;
+  --pwm-color-gold-700: #866e44;
+  --pwm-color-gold-800: #725e38;
+
+  --pwm-color-blue-primary: #2e2a94;
+  --pwm-color-blue-accent: #382ad7;
+
+  --pwm-color-white: #ffffff;
+  --pwm-color-neutral-400: #bdbdbd;
+  --pwm-color-neutral-700: #616161;
+
+  --pwm-color-btn-primary: #2e2a94;
+  --pwm-color-text-inverse: #ffffff;
+
+  /* ── Spacing ───────────────────────────────────────────────── */
+  --pwm-space-4: 4px;
+  --pwm-space-8: 8px;
+  --pwm-space-12: 12px;
+  --pwm-space-16: 16px;
+  --pwm-space-20: 20px;
+  --pwm-space-24: 24px;
+  --pwm-space-32: 32px;
+  --pwm-space-40: 40px;
+  --pwm-space-48: 48px;
+  --pwm-space-60: 60px;
+
+  /* ── Radii ─────────────────────────────────────────────────── */
+  --pwm-radius-sm: 4px;
+  --pwm-radius-md: 8px;
+
+  /* ── Layout ────────────────────────────────────────────────── */
+  --pwm-content-max: 1232px;
+  --pwm-section-padding-x: 16px;
+  --pwm-section-padding-y: var(--pwm-space-40);
+
+  /* ── Transitions ───────────────────────────────────────────── */
+  --pwm-duration-fast: 150ms;
+  --pwm-duration-normal: 250ms;
+
+  /* ── Slider / Progress ─────────────────────────────────────── */
+  --pwm-slider-track-bg: var(--pwm-color-neutral-400);
+  --pwm-slider-fill-bg: var(--pwm-color-blue-accent);
+  --pwm-slider-height: 2px;
+  --pwm-slider-radius: 3px;
+
+  /* ── Border ────────────────────────────────────────────────── */
+  --pwm-border-divider: rgba(66, 66, 66, 0.5);
+}
+
+@media (width >= 900px) {
+  :root {
+    --pwm-section-padding-x: 67px;
+  }
+}

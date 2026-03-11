@@ -1,0 +1,248 @@
+/* =============================================================
+   MOFSL GROUP — "A part of the MOFSL group" section
+   Figma: Desktop node 1:2873 (scroll 2)
+   Pattern: info-panel with subsidiary stat grid on gold bg card
+   ============================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import url('../../styles/pwm-tokens.css');
+
+/* ── Reset EDS wrappers ── */
+.mofsl-group-wrapper,
+.mofsl-group-container {
+  max-width: unset;
+  padding: 0;
+}
+
+/* ── Outer section shell ── */
+.mofsl-group {
+  background-color: var(--pwm-color-gold-100);
+  font-family: var(--pwm-font-body);
+  padding: var(--pwm-space-40) var(--pwm-section-padding-x);
+}
+
+/* ── Section heading (outside the gold card) ── */
+.mofsl-group__section-heading {
+  max-width: var(--pwm-content-max);
+  margin-inline: auto;
+  margin-block-end: var(--pwm-space-32);
+
+  font-family: var(--pwm-font-title);
+  font-size: var(--pwm-font-size-pwmh4-mobile, 20px);
+  font-weight: var(--pwm-fw-regular);
+  line-height: var(--pwm-font-lh-pwmh4-mobile, 24px);
+  color: var(--pwm-color-gold-700);
+}
+
+.mofsl-group__section-heading em {
+  /* "MOFSL group" part in blue — use <em> for semantic emphasis */
+  font-style: normal;
+  color: var(--pwm-color-blue-primary);
+}
+
+/* ── Gold card ── */
+.mofsl-group__card {
+  position: relative;
+  max-width: var(--pwm-content-max);
+  margin-inline: auto;
+  background-color: var(--pwm-color-gold-200);
+  border-radius: var(--pwm-radius-sm);
+  overflow: hidden;
+  padding: var(--pwm-space-32) var(--pwm-space-24);
+}
+
+/* ── Decorative SVG watermark (optional, positioned absolute) ── */
+.mofsl-group__card-deco {
+  display: none; /* hidden on mobile to avoid distraction */
+  position: absolute;
+  inset-inline-end: 0;
+  inset-block-end: 0;
+  width: 28%;
+  max-width: 344px;
+  pointer-events: none;
+  opacity: 0.45;
+}
+
+.mofsl-group__card-deco img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ── Primary stat row (PWM name + AUM hero stat) ── */
+.mofsl-group__primary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--pwm-space-16);
+  color: var(--pwm-color-gold-800);
+}
+
+.mofsl-group__primary-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pwm-space-4);
+  flex: 1 1 60%;
+}
+
+.mofsl-group__primary-title {
+  font-family: var(--pwm-font-title);
+  font-size: var(--pwm-font-size-h3);
+  font-weight: var(--pwm-fw-semibold);
+  line-height: var(--pwm-font-lh-h3);
+  color: var(--pwm-color-gold-800);
+  margin: 0;
+}
+
+.mofsl-group__primary-desc {
+  font-size: var(--pwm-font-size-body-md);
+  font-weight: var(--pwm-fw-medium);
+  line-height: var(--pwm-font-lh-body-md);
+  color: var(--pwm-color-gold-800);
+  margin: 0;
+}
+
+.mofsl-group__primary-stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pwm-space-4);
+  flex: 0 0 auto;
+}
+
+.mofsl-group__primary-value {
+  font-family: var(--pwm-font-title);
+  font-size: var(--pwm-font-size-h3);
+  font-weight: var(--pwm-fw-semibold);
+  line-height: var(--pwm-font-lh-h3);
+  color: var(--pwm-color-gold-800);
+  margin: 0;
+}
+
+.mofsl-group__primary-label {
+  font-size: var(--pwm-font-size-body-md);
+  font-weight: var(--pwm-fw-medium);
+  line-height: var(--pwm-font-lh-body-md);
+  color: var(--pwm-color-gold-800);
+  margin: 0;
+}
+
+/* ── Divider ── */
+.mofsl-group__divider {
+  border: 0;
+  border-block-start: 1px solid var(--pwm-color-gold-500);
+  margin-block: var(--pwm-space-24);
+}
+
+/* ── Subsidiary grid ── */
+.mofsl-group__subsidiaries {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--pwm-space-32) var(--pwm-space-24);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ── Single subsidiary item ── */
+.mofsl-group__sub {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--pwm-space-8);
+}
+
+.mofsl-group__sub-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Subsidiary name — underlined link-like label */
+.mofsl-group__sub-name {
+  font-family: var(--pwm-font-body);
+  font-size: var(--pwm-font-size-body-md);
+  font-weight: var(--pwm-fw-medium);
+  line-height: var(--pwm-font-lh-label-lg);
+  color: var(--pwm-color-gold-700);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  margin: 0;
+}
+
+.mofsl-group__sub-name a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.mofsl-group__sub-name a:hover,
+.mofsl-group__sub-name a:focus-visible {
+  color: var(--pwm-color-blue-primary);
+  outline-offset: 2px;
+}
+
+.mofsl-group__sub-desc {
+  font-family: var(--pwm-font-body);
+  font-size: var(--pwm-font-size-body-sm);
+  font-weight: var(--pwm-fw-regular);
+  line-height: var(--pwm-font-lh-label-lg);
+  color: var(--pwm-color-neutral-700);
+  margin: 0;
+}
+
+/* Subsidiary metric */
+.mofsl-group__sub-metric {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pwm-space-4);
+  margin-block-start: var(--pwm-space-20);
+}
+
+.mofsl-group__sub-value {
+  font-family: var(--pwm-font-title);
+  font-size: var(--pwm-font-size-h6);
+  font-weight: var(--pwm-fw-semibold);
+  line-height: var(--pwm-font-lh-h6);
+  color: var(--pwm-color-gold-700);
+  margin: 0;
+}
+
+.mofsl-group__sub-label {
+  font-family: var(--pwm-font-body);
+  font-size: var(--pwm-font-size-body-sm);
+  font-weight: var(--pwm-fw-regular);
+  line-height: var(--pwm-font-lh-label-lg);
+  color: var(--pwm-color-neutral-700);
+  margin: 0;
+}
+
+/* ── Desktop (≥ 900px) ── */
+@media (width >= 900px) {
+  .mofsl-group__section-heading {
+    font-size: var(--pwm-font-size-pwmh4);
+    line-height: var(--pwm-font-lh-pwmh4);
+  }
+
+  .mofsl-group__card {
+    padding: var(--pwm-space-32) var(--pwm-space-48);
+  }
+
+  .mofsl-group__card-deco {
+    display: block;
+  }
+
+  /* 3-column grid for subsidiaries on desktop */
+  .mofsl-group__subsidiaries {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--pwm-space-32) var(--pwm-space-60);
+    /* Leave right ~30% free for decorative SVG */
+    max-width: 76%;
+  }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .mofsl-group * {
+    transition: none !important;
+  }
+}

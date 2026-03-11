@@ -1,0 +1,231 @@
+/* =============================================================
+   HOW WE SERVE — Split layout: text+list left / image right
+   Figma: Desktop node 1:2967 (scroll 4)
+   Pattern: columns-variant with accordion/list left panel
+   ============================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import url('../../styles/pwm-tokens.css');
+
+/* ── Reset EDS wrappers ── */
+.how-we-serve-wrapper,
+.how-we-serve-container {
+  max-width: unset;
+  padding: 0;
+}
+
+/* ── Outer section ── */
+.how-we-serve {
+  background-color: var(--pwm-color-gold-100);
+  font-family: var(--pwm-font-body);
+  padding: var(--pwm-space-40) var(--pwm-section-padding-x);
+  overflow: hidden;
+}
+
+/* ── Inner layout: stacked on mobile, 50/50 on desktop ── */
+.how-we-serve__inner {
+  max-width: var(--pwm-content-max);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--pwm-space-40);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   LEFT PANEL — header + list + CTA
+   ───────────────────────────────────────────────────────────── */
+
+.how-we-serve__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pwm-space-32);
+}
+
+/* Section eyebrow + headline */
+.how-we-serve__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pwm-space-8);
+}
+
+.how-we-serve__eyebrow {
+  font-size: var(--pwm-font-size-body-md);
+  font-weight: var(--pwm-fw-medium);
+  line-height: var(--pwm-font-lh-body-md);
+  color: var(--pwm-color-gold-700);
+  margin: 0;
+}
+
+.how-we-serve__headline {
+  font-family: var(--pwm-font-title);
+  font-size: var(--pwm-font-size-pwmh4-mobile, 20px);
+  font-weight: var(--pwm-fw-regular);
+  line-height: var(--pwm-font-lh-pwmh4-mobile, 24px);
+  color: var(--pwm-color-blue-primary);
+  margin: 0;
+}
+
+/* ── Service list ── */
+.how-we-serve__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-block-start: 1px solid var(--pwm-border-divider);
+}
+
+/* ── Each list item row ── */
+.how-we-serve__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--pwm-space-12);
+  padding-block: var(--pwm-space-24);
+  border-block-end: 1px solid var(--pwm-border-divider);
+  /* No height set — content drives it; avoids CLS */
+}
+
+.how-we-serve__item-label {
+  font-size: var(--pwm-font-size-body-lg);
+  font-weight: var(--pwm-fw-medium);
+  line-height: var(--pwm-font-lh-body-lg);
+  color: var(--pwm-color-gold-700);
+  margin: 0;
+  flex: 1;
+}
+
+/* Arrow icon button ── */
+.how-we-serve__item-arrow {
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--pwm-color-gold-700);
+  border-radius: 50%;
+  transition: background-color var(--pwm-duration-fast) ease;
+  /* Arrow points up-right per Figma (northeast diagonal) */
+  transform: rotate(-45deg);
+}
+
+.how-we-serve__item-arrow:hover,
+.how-we-serve__item-arrow:focus-visible {
+  background-color: rgba(0, 0, 0, 0.06);
+  outline: 2px solid var(--pwm-color-gold-700);
+  outline-offset: 2px;
+}
+
+/* CSS arrow — avoids inline SVG dep. Can be swapped for icon sprite. */
+.how-we-serve__item-arrow::before {
+  content: '';
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-inline-end: 2px solid currentcolor;
+  border-block-start: 2px solid currentcolor;
+}
+
+/* ── CTA button ── */
+.how-we-serve__cta {
+  align-self: flex-start;
+}
+
+.how-we-serve__cta a,
+.how-we-serve__cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--pwm-space-8);
+  height: 48px;
+  padding-inline: var(--pwm-space-32);
+  background-color: var(--pwm-color-btn-primary);
+  color: var(--pwm-color-text-inverse);
+  font-family: var(--pwm-font-body);
+  font-size: var(--pwm-font-size-body-md);
+  font-weight: var(--pwm-fw-medium);
+  line-height: var(--pwm-font-lh-body-md);
+  text-decoration: none;
+  border: none;
+  border-radius: var(--pwm-radius-sm);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color var(--pwm-duration-fast) ease,
+    box-shadow var(--pwm-duration-fast) ease;
+}
+
+.how-we-serve__cta a:hover,
+.how-we-serve__cta-btn:hover {
+  background-color: color-mix(in srgb, var(--pwm-color-btn-primary) 85%, #000);
+}
+
+.how-we-serve__cta a:focus-visible,
+.how-we-serve__cta-btn:focus-visible {
+  outline: 2px solid var(--pwm-color-gold-700);
+  outline-offset: 3px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   RIGHT PANEL — masked / rounded image
+   ───────────────────────────────────────────────────────────── */
+
+.how-we-serve__media {
+  /* Reserve space to prevent CLS. Figma: 568 × 564 → ~1:1 ratio */
+  position: relative;
+  width: 100%;
+  border-radius: var(--pwm-radius-sm);
+  overflow: hidden;
+  /* Aspect ratio from Figma: 568/564 ≈ 1/1 */
+  aspect-ratio: 568 / 564;
+  background-color: var(--pwm-color-gold-200); /* fallback while loading */
+}
+
+.how-we-serve__media picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.how-we-serve__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ── Desktop (≥ 900px) ── */
+@media (width >= 900px) {
+  .how-we-serve__inner {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--pwm-space-48);
+  }
+
+  .how-we-serve__content {
+    /* ~50% of content max width, mirroring Figma's 616px / 1232px */
+    flex: 0 0 50%;
+    gap: var(--pwm-space-48);
+  }
+
+  .how-we-serve__headline {
+    font-size: var(--pwm-font-size-pwmh4);
+    line-height: var(--pwm-font-lh-pwmh4);
+  }
+
+  .how-we-serve__media {
+    flex: 1;
+  }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .how-we-serve__item-arrow,
+  .how-we-serve__cta a,
+  .how-we-serve__cta-btn {
+    transition: none;
+  }
+}

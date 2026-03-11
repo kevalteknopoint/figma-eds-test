@@ -12,8 +12,6 @@
  * alt-text / collapsed fields that produce no DOM row don't break the layout.
  */
 
-const MOBILE_BREAKPOINT = 900;
-
 /** Returns true if the cell contains a picture/img (logo) */
 function isImageCell(cell) {
   return !!(cell && cell.querySelector('picture, img'));

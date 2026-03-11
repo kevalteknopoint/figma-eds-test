@@ -1,0 +1,147 @@
+/* =============================================================
+   WHO WE ARE — Statistics band
+   Figma: Desktop node 1:2872  |  Mobile node 1:3637
+   Pattern: columns-variant (eyebrow + headline left, stat grid right)
+   ============================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import url('../../styles/pwm-tokens.css');
+
+/* ── Reset EDS wrapper to allow contained layout ── */
+.who-we-are-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.who-we-are-container {
+  max-width: unset;
+  padding: 0;
+}
+
+/* ── Section wrapper ── */
+.who-we-are {
+  background-color: var(--pwm-color-gold-100);
+  font-family: var(--pwm-font-body);
+  padding: var(--pwm-space-40) var(--pwm-section-padding-x);
+}
+
+/* ── Inner constrained container ── */
+.who-we-are__inner {
+  max-width: var(--pwm-content-max);
+  margin-inline: auto;
+
+  /* Mobile: single column stack */
+  display: flex;
+  flex-direction: column;
+  gap: var(--pwm-space-32);
+}
+
+/* ── Left panel: eyebrow + headline ── */
+.who-we-are__intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pwm-space-8);
+}
+
+.who-we-are__eyebrow {
+  font-family: var(--pwm-font-body);
+  font-size: var(--pwm-font-size-body-md);
+  font-weight: var(--pwm-fw-medium);
+  line-height: var(--pwm-font-lh-body-md);
+  color: var(--pwm-color-gold-700);
+  margin: 0;
+}
+
+.who-we-are__headline {
+  font-family: var(--pwm-font-title);
+  /* Mobile: 20px / 24px */
+  font-size: var(--pwm-font-size-pwmh4-mobile, 20px);
+  font-weight: var(--pwm-fw-regular);
+  line-height: var(--pwm-font-lh-pwmh4-mobile, 24px);
+  color: var(--pwm-color-blue-primary);
+  margin: 0;
+}
+
+/* ── Stats grid ── */
+.who-we-are__stats {
+  display: grid;
+  /* Mobile: 2 columns */
+  grid-template-columns: 1fr 1fr;
+  gap: var(--pwm-space-32) var(--pwm-space-16);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ── Individual stat item ── */
+.who-we-are__stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pwm-space-4);
+}
+
+.who-we-are__stat-value {
+  font-family: var(--pwm-font-title);
+  /* Mobile: 34px / 40px per Figma mobile node */
+  font-size: var(--pwm-font-size-h2-mobile, 34px);
+  font-weight: var(--pwm-fw-semibold);
+  line-height: var(--pwm-font-lh-h2-mobile, 40px);
+  color: var(--pwm-color-gold-700);
+  margin: 0;
+}
+
+.who-we-are__stat-label {
+  font-family: var(--pwm-font-body);
+  font-size: var(--pwm-font-size-body-md);
+  font-weight: var(--pwm-fw-regular);
+  line-height: var(--pwm-font-lh-body-md);
+  color: var(--pwm-color-blue-primary);
+  margin: 0;
+}
+
+/* ── Desktop (≥ 900px) ── */
+@media (width >= 900px) {
+  .who-we-are__inner {
+    /* Desktop: side-by-side, intro left ~33%, stats right ~67% */
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+  }
+
+  .who-we-are__intro {
+    /* Fixed column width matching Figma: ~340px of 1232px */
+    flex: 0 0 28%;
+    padding-inline-end: var(--pwm-space-32);
+  }
+
+  .who-we-are__headline {
+    font-size: var(--pwm-font-size-pwmh6);
+    line-height: var(--pwm-font-lh-pwmh6);
+  }
+
+  .who-we-are__stats {
+    flex: 1;
+    /* Desktop: 2×2 grid — Figma places stats at absolute positions but
+       a CSS grid is semantically equivalent and fully responsive */
+    grid-template-columns: 1fr 1fr;
+    gap: var(--pwm-space-32) var(--pwm-space-60);
+  }
+
+  .who-we-are__stat-value {
+    font-size: var(--pwm-font-size-h2);
+    line-height: var(--pwm-font-lh-h2);
+  }
+
+  /* Desktop stat label uses neutral-700 (not blue) per Figma */
+  .who-we-are__stat-label {
+    color: var(--pwm-color-neutral-700);
+  }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .who-we-are * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

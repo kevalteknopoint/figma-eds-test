@@ -1,0 +1,273 @@
+/* =============================================================
+   WHO WE SERVE — Horizontally scrollable image card carousel
+   Figma: Desktop node 1:2934 (scroll 3)
+   Pattern: cards-variant (horizontal scroll with progress indicator)
+   ============================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import url('../../styles/pwm-tokens.css');
+
+/* ── Reset EDS wrappers ── */
+.who-we-serve-wrapper,
+.who-we-serve-container {
+  max-width: unset;
+  padding: 0;
+}
+
+/* ── Outer section ── */
+.who-we-serve {
+  background-color: var(--pwm-color-gold-100);
+  font-family: var(--pwm-font-body);
+  padding: var(--pwm-space-40) 0;
+}
+
+/* ── Constrained header ── */
+.who-we-serve__header {
+  max-width: var(--pwm-content-max);
+  margin-inline: auto;
+  padding-inline: var(--pwm-section-padding-x);
+  display: flex;
+  flex-direction: column;
+  gap: var(--pwm-space-8);
+  margin-block-end: var(--pwm-space-32);
+}
+
+.who-we-serve__eyebrow {
+  font-size: var(--pwm-font-size-body-md);
+  font-weight: var(--pwm-fw-medium);
+  line-height: var(--pwm-font-lh-body-md);
+  color: var(--pwm-color-gold-700);
+  margin: 0;
+}
+
+.who-we-serve__headline {
+  font-family: var(--pwm-font-title);
+  font-size: var(--pwm-font-size-pwmh4-mobile, 20px);
+  font-weight: var(--pwm-fw-regular);
+  line-height: var(--pwm-font-lh-pwmh4-mobile, 24px);
+  color: var(--pwm-color-blue-primary);
+  margin: 0;
+}
+
+/* ── Carousel track wrapper — enables horizontal scroll ── */
+.who-we-serve__track-wrap {
+  overflow: hidden; /* JS controls scroll — this clips overflow */
+  position: relative;
+}
+
+/* ── Card track (the scrollable list) ── */
+.who-we-serve__track {
+  display: flex;
+  gap: var(--pwm-space-16);
+  padding-inline: var(--pwm-section-padding-x);
+  /* Smooth scroll on native swipe / keyboard */
+  scroll-behavior: smooth;
+  /* Snap to card boundaries */
+  scroll-snap-type: x mandatory;
+  /* Hide scrollbar while allowing scroll — progressive enhancement */
+  overflow-x: auto;
+  scrollbar-width: none;
+  list-style: none;
+  margin: 0;
+  padding-block: var(--pwm-space-4); /* room for box-shadow on focus */
+}
+
+.who-we-serve__track::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Individual card ── */
+.who-we-serve__card {
+  /* Mobile: near-full-width; desktop: 400px per Figma */
+  flex: 0 0 calc(100vw - calc(var(--pwm-section-padding-x) * 2) - var(--pwm-space-8));
+  max-width: 400px;
+  height: 427px;
+  border-radius: var(--pwm-radius-sm);
+  overflow: hidden;
+  position: relative;
+  background-color: var(--pwm-color-white);
+  scroll-snap-align: start;
+  /* Reserve space for image to prevent CLS */
+  contain: layout;
+}
+
+/* ── Card header (gold bar at top) ── */
+.who-we-serve__card-header {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  width: 100%;
+  /* Figma: 110px height */
+  min-height: 110px;
+  background-color: var(--pwm-color-gold-200);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--pwm-space-16) var(--pwm-space-20);
+  box-sizing: border-box;
+}
+
+.who-we-serve__card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--pwm-space-8);
+}
+
+.who-we-serve__card-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pwm-space-8);
+  flex: 1;
+}
+
+.who-we-serve__card-title {
+  font-family: var(--pwm-font-body);
+  font-size: var(--pwm-font-size-subheader);
+  font-weight: var(--pwm-fw-medium);
+  line-height: var(--pwm-font-lh-subheader);
+  color: var(--pwm-color-gold-800);
+  margin: 0;
+}
+
+.who-we-serve__card-desc {
+  font-size: var(--pwm-font-size-body-sm);
+  font-weight: var(--pwm-fw-regular);
+  line-height: var(--pwm-font-lh-body-sm);
+  color: var(--pwm-color-blue-primary);
+  margin: 0;
+}
+
+/* ── Expand button (the + icon) ── */
+.who-we-serve__card-btn {
+  flex: 0 0 24px;
+  width: 24px;
+  height: 24px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--pwm-color-gold-800);
+  border-radius: 50%;
+  transition: background-color var(--pwm-duration-fast) ease;
+}
+
+.who-we-serve__card-btn:hover,
+.who-we-serve__card-btn:focus-visible {
+  background-color: rgba(0, 0, 0, 0.08);
+  outline: 2px solid var(--pwm-color-gold-700);
+  outline-offset: 2px;
+}
+
+/* Plus icon via CSS — avoids external SVG dependency */
+.who-we-serve__card-btn::before,
+.who-we-serve__card-btn::after {
+  content: '';
+  position: absolute;
+  background-color: currentcolor;
+  border-radius: 1px;
+}
+
+.who-we-serve__card-btn::before {
+  width: 14px;
+  height: 2px;
+}
+
+.who-we-serve__card-btn::after {
+  width: 2px;
+  height: 14px;
+}
+
+.who-we-serve__card-btn[aria-expanded="true"]::after {
+  /* Rotate to form × when expanded */
+  transform: rotate(45deg);
+}
+
+/* ── Card image ── */
+.who-we-serve__card-media {
+  position: absolute;
+  inset-block-start: 110px; /* below the header */
+  inset-inline-start: 0;
+  width: 100%;
+  height: calc(100% - 110px);
+}
+
+.who-we-serve__card-media picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.who-we-serve__card-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* ── Expanded card overlay (future enhancement, not in base Figma) ── */
+.who-we-serve__card[aria-expanded="true"] .who-we-serve__card-header {
+  min-height: 100%;
+  background-color: var(--pwm-color-gold-200);
+}
+
+/* ── Progress / Slider track ── */
+.who-we-serve__progress-wrap {
+  max-width: var(--pwm-content-max);
+  margin-inline: auto;
+  padding-inline: var(--pwm-section-padding-x);
+  margin-block-start: var(--pwm-space-16);
+  /* Align to middle card per Figma (center of 3 visible) */
+  display: flex;
+  justify-content: center;
+}
+
+.who-we-serve__progress {
+  width: 400px;
+  max-width: 100%;
+  height: var(--pwm-slider-height);
+  background-color: var(--pwm-slider-track-bg);
+  border-radius: var(--pwm-slider-radius);
+  overflow: hidden;
+  position: relative;
+}
+
+.who-we-serve__progress-fill {
+  height: 100%;
+  background-color: var(--pwm-slider-fill-bg);
+  border-radius: var(--pwm-slider-radius);
+  width: 25%; /* updated by JS relative to scroll position */
+  transition: width var(--pwm-duration-normal) ease;
+}
+
+/* ── Desktop (≥ 900px) ── */
+@media (width >= 900px) {
+  .who-we-serve__headline {
+    font-size: var(--pwm-font-size-pwmh4);
+    line-height: var(--pwm-font-lh-pwmh4);
+  }
+
+  .who-we-serve__card {
+    flex: 0 0 400px;
+  }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .who-we-serve__track {
+    scroll-behavior: auto;
+  }
+
+  .who-we-serve__progress-fill {
+    transition: none;
+  }
+
+  .who-we-serve__card-btn::after {
+    transition: none;
+  }
+}

@@ -260,14 +260,7 @@
       {
         "component": "aem-content",
         "name": "ctaLink",
-        "label": "CTA Link",
-        "collapse": true
-      },
-      {
-        "component": "text",
-        "name": "ctaText",
-        "label": "CTA Text",
-        "collapsedFieldOf": "ctaLink"
+        "label": "CTA Link"
       }
     ]
   },
@@ -300,15 +293,125 @@
       {
         "component": "aem-content",
         "name": "loginLink",
-        "label": "Login Link",
-        "collapse": true
-      },
+        "label": "Login Link"
+      }
+    ]
+  },
+  {
+    "id": "who-we-are",
+    "fields": [
       {
         "component": "text",
-        "name": "loginText",
-        "label": "Login Button Text",
-        "value": "Login",
-        "collapsedFieldOf": "loginLink"
+        "valueType": "string",
+        "name": "eyebrow",
+        "label": "Eyebrow Text",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "headline",
+        "label": "Headline",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "stats",
+        "label": "Stats (value | label per row)",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "mofsl-group",
+    "fields": [
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "sectionHeading",
+        "label": "Section Heading",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "primaryContent",
+        "label": "Primary Title and Description",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "subsidiaries",
+        "label": "Subsidiaries (name | desc rows, then value | label rows)",
+        "value": ""
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "decoImage",
+        "label": "Decorative Watermark Image",
+        "multi": false
+      }
+    ]
+  },
+  {
+    "id": "who-we-serve",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "eyebrow",
+        "label": "Eyebrow Text",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "headline",
+        "label": "Headline",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "cards",
+        "label": "Cards (title | image | description per group)",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "how-we-serve",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "eyebrow",
+        "label": "Eyebrow Text",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "headline",
+        "label": "Headline",
+        "value": ""
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "services",
+        "label": "Service Items",
+        "value": ""
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "image",
+        "label": "Right Panel Image",
+        "multi": false
       }
     ]
   }

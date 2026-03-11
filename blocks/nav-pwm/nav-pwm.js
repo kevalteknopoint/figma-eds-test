@@ -91,7 +91,7 @@ function buildSearchBtn() {
   const btn = document.createElement('button');
   btn.className = 'nav-pwm__search-btn';
   btn.setAttribute('aria-label', 'Search');
-  btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`;
+  btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>';
   return btn;
 }
 
@@ -134,13 +134,10 @@ export default function decorate(block) {
         loginLinkCell = cell;
       } else if (loginLinkCell && !loginLabelCell) {
         loginLabelCell = cell;
+      } else if (loginLinkCell && !loginLabelCell) {
+        loginLabelCell = cell;
       } else {
-        // Treat as label if loginLinkCell already set
-        if (loginLinkCell) {
-          loginLabelCell = cell;
-        } else {
-          loginLinkCell = cell;
-        }
+        loginLinkCell = cell;
       }
     } else if (loginLinkCell && !loginLabelCell) {
       loginLabelCell = cell;
@@ -174,7 +171,7 @@ export default function decorate(block) {
     const ul = linksCell.querySelector('ul') || linksCell.querySelector('ol');
     if (ul) {
       ul.className = 'nav-pwm__list';
-      // Mark list items that have sub-menus (authored as nested lists or contain links with children)
+      // Mark list items that have sub-menus (authored as nested lists)
       ul.querySelectorAll(':scope > li').forEach((li) => {
         li.className = 'nav-pwm__item';
         const subList = li.querySelector('ul, ol');
@@ -186,9 +183,9 @@ export default function decorate(block) {
           const toggle = document.createElement('button');
           toggle.className = 'nav-pwm__item-toggle';
           toggle.setAttribute('aria-expanded', 'false');
-          toggle.innerHTML = `<svg class="nav-pwm__chevron" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>`;
+          toggle.innerHTML = '<svg class="nav-pwm__chevron" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>';
 
-          const firstChild = li.firstChild;
+          const { firstChild } = li;
           li.insertBefore(toggle, firstChild);
 
           toggle.addEventListener('click', () => {
@@ -213,7 +210,7 @@ export default function decorate(block) {
     // Add the chevron icon inside login button (matches Figma)
     const chevronSvg = document.createElement('span');
     chevronSvg.className = 'nav-pwm__login-chevron';
-    chevronSvg.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>`;
+    chevronSvg.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>';
     loginAnchor.appendChild(chevronSvg);
     loginBtn.appendChild(loginAnchor);
   }

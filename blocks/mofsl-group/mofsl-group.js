@@ -66,7 +66,9 @@ const parseEmphasisMarkers = (text) => {
  * Build a single subsidiary <li>.
  * @param {{name:string, nameHref:string|null, desc:string, value:string, label:string}} sub
  */
-const buildSubItem = ({ name, nameHref, desc, value, label }) => {
+const buildSubItem = ({
+  name, nameHref, desc, value, label,
+}) => {
   const li = document.createElement('li');
   li.className = 'mofsl-group__sub';
 
@@ -151,7 +153,9 @@ export default function decorate(block) {
     const label = getText(metricCells[1]);
 
     if (name) {
-      subsidiaries.push({ name, nameHref, desc, value, label });
+      subsidiaries.push({
+        name, nameHref, desc, value, label,
+      });
     }
   }
 

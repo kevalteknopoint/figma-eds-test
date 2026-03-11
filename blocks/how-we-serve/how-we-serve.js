@@ -124,7 +124,7 @@ export default function decorate(block) {
   // Detect last row with an image (right panel)
   let imageCell = null;
   let imageRowIdx = -1;
-  for (let i = rows.length - 1; i >= 0; i--) {
+  for (let i = rows.length - 1; i >= 0; i -= 1) {
     const cells = getRow(i);
     if (getPicture(cells[1]) || getPicture(cells[0])) {
       imageCell = getPicture(cells[1]) || getPicture(cells[0]);
@@ -149,8 +149,8 @@ export default function decorate(block) {
   const potentialCta = getRow(contentEnd - 1);
   const ctaText = getText(potentialCta[0]);
   const hasAnchor = potentialCta[0]?.querySelector('a');
-  // Distinguish service items (pure text, no link) from CTA rows (link, or "Learn More" style text)
-  // Heuristic: if the cell contains an <a> OR the text is short and doesn't look like a service name
+  // Distinguish service items (pure text, no link) from CTA rows (link, or "Learn More" style).
+  // Heuristic: cell contains an <a> OR the text is short and doesn't look like a service name
   if (potentialCta.length && (hasAnchor || (ctaText && ctaText.length < 25))) {
     ctaCell = potentialCta[0];
     ctaRowIdx = contentEnd - 1;
@@ -188,12 +188,12 @@ export default function decorate(block) {
 
     serviceRows.forEach((row) => {
       const cells = [...row.querySelectorAll(':scope > div')];
-      const labelCell = cells[0];
+      const [labelCell] = cells;
       if (!labelCell) return;
 
       const anchor = labelCell.querySelector('a');
       const label = anchor ? anchor.textContent.trim() : getText(labelCell);
-      const href = anchor?.href ?? null;
+      const href = anchor ? anchor.href : null;
 
       if (label) {
         list.append(buildServiceItem(label, href));

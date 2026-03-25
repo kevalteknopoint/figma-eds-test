@@ -1,0 +1,188 @@
+/* =============================================================
+   HDBFS HERO — Hero banner with red ticker strip
+   Matches hdbfs.com: red news ticker + full-width hero banner
+   ============================================================= */
+
+@import url('../../styles/hdbfs-tokens.css');
+
+/* ── Reset EDS wrappers ── */
+.hdbfs-hero-wrapper,
+.hdbfs-hero-container {
+  max-width: unset !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.hdbfs-hero {
+  font-family: var(--hdbfs-font-family);
+}
+
+/* ══ TICKER ════════════════════════════════════════════════ */
+.hdbfs-hero__ticker {
+  background: var(--hdbfs-color-ticker-bg);
+  color: var(--hdbfs-color-white);
+  overflow: hidden;
+  padding: var(--hdbfs-space-8) 0;
+  font-size: var(--hdbfs-fs-sm);
+  font-weight: var(--hdbfs-fw-medium);
+  white-space: nowrap;
+  position: relative;
+}
+
+.hdbfs-hero__ticker-track {
+  display: inline-flex;
+  gap: var(--hdbfs-space-48);
+  animation: hdbfs-ticker-scroll 30s linear infinite;
+  will-change: transform;
+}
+
+.hdbfs-hero__ticker-track:hover {
+  animation-play-state: paused;
+}
+
+.hdbfs-hero__ticker-item {
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.hdbfs-hero__ticker-item a {
+  color: var(--hdbfs-color-white);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+@keyframes hdbfs-ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ══ BANNER ═══════════════════════════════════════════════ */
+.hdbfs-hero__banner {
+  position: relative;
+  width: 100%;
+  min-height: 380px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #1a1a2e 0%, #c8102e 100%);
+}
+
+@media (width >= 768px) {
+  .hdbfs-hero__banner {
+    min-height: 480px;
+  }
+}
+
+@media (width >= 1024px) {
+  .hdbfs-hero__banner {
+    min-height: 560px;
+  }
+}
+
+/* Background image */
+.hdbfs-hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+}
+
+.hdbfs-hero__bg img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Overlay */
+.hdbfs-hero__overlay {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  background: linear-gradient(to right, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.15) 60%, transparent 100%);
+}
+
+.hdbfs-hero__content {
+  max-width: var(--hdbfs-max-width);
+  margin: 0 auto;
+  padding: var(--hdbfs-space-48) var(--hdbfs-section-pad-x);
+  display: flex;
+  flex-direction: column;
+  gap: var(--hdbfs-space-20);
+  max-width: 600px;
+  padding-inline-start: var(--hdbfs-section-pad-x);
+}
+
+@media (width >= 768px) {
+  .hdbfs-hero__content {
+    padding: var(--hdbfs-space-64) var(--hdbfs-section-pad-x);
+  }
+}
+
+.hdbfs-hero__heading {
+  font-family: var(--hdbfs-font-heading);
+  font-size: var(--hdbfs-fs-3xl);
+  font-weight: var(--hdbfs-fw-bold);
+  line-height: 1.2;
+  color: var(--hdbfs-color-white);
+  margin: 0;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+@media (width >= 768px) {
+  .hdbfs-hero__heading {
+    font-size: var(--hdbfs-fs-5xl);
+  }
+}
+
+.hdbfs-hero__sub {
+  font-size: var(--hdbfs-fs-md);
+  color: rgba(255,255,255,0.9);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Tag pills (Fast | Secure | Hassle-Free) */
+.hdbfs-hero__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--hdbfs-space-8);
+}
+
+.hdbfs-hero__pill {
+  display: inline-block;
+  padding: var(--hdbfs-space-4) var(--hdbfs-space-16);
+  background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: 20px;
+  font-size: var(--hdbfs-fs-sm);
+  font-weight: var(--hdbfs-fw-medium);
+  color: var(--hdbfs-color-white);
+  backdrop-filter: blur(4px);
+}
+
+/* CTA button */
+.hdbfs-hero__cta {
+  display: inline-block;
+  align-self: flex-start;
+  padding: var(--hdbfs-space-12) var(--hdbfs-space-32);
+  background: var(--hdbfs-color-red);
+  color: var(--hdbfs-color-white);
+  font-size: var(--hdbfs-fs-md);
+  font-weight: var(--hdbfs-fw-bold);
+  text-decoration: none;
+  border-radius: var(--hdbfs-radius-sm);
+  letter-spacing: 0.5px;
+  transition: background 0.2s, transform 0.15s;
+  box-shadow: 0 4px 12px rgba(200, 16, 46, 0.4);
+}
+
+.hdbfs-hero__cta:hover {
+  background: var(--hdbfs-color-red-dark);
+  transform: translateY(-2px);
+}

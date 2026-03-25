@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HDB Financial Services — Home</title>
+
+  <!-- HDBFS Design Tokens -->
+  <link rel="stylesheet" href="styles/hdbfs-tokens.css">
+
+  <!-- Block CSS -->
+  <link rel="stylesheet" href="blocks/hdbfs-nav/hdbfs-nav.css">
+  <link rel="stylesheet" href="blocks/hdbfs-hero/hdbfs-hero.css">
+  <link rel="stylesheet" href="blocks/hdbfs-products/hdbfs-products.css">
+  <link rel="stylesheet" href="blocks/hdbfs-customer-service/hdbfs-customer-service.css">
+  <link rel="stylesheet" href="blocks/hdbfs-important-info/hdbfs-important-info.css">
+  <link rel="stylesheet" href="blocks/hdbfs-testimonials/hdbfs-testimonials.css">
+  <link rel="stylesheet" href="blocks/hdbfs-blogs/hdbfs-blogs.css">
+  <link rel="stylesheet" href="blocks/hdbfs-csr/hdbfs-csr.css">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background: #fff;
+    }
+    main { padding-top: var(--hdbfs-nav-height); }
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Condensed:wght@700&display=swap');
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+</head>
+<body class="appear">
+
+<!-- ═══════════════════════════════════════════════════════════════
+     HDBFS NAV
+═══════════════════════════════════════════════════════════════ -->
+<div class="hdbfs-nav-wrapper">
+  <div class="hdbfs-nav-container">
+    <div class="hdbfs-nav block" data-block-name="hdbfs-nav" data-block-status="loading">
+
+      <!-- Row 1: Logo -->
+      <div>
+        <div>
+          <!-- In production: <picture>…</picture>. Using text fallback for test. -->
+          <span style="display:flex;align-items:center;gap:8px;font-size:22px;font-weight:700;color:#c8102e;font-family:'Roboto Condensed',sans-serif;">
+            HDB Financial Services
+          </span>
+        </div>
+        <div></div>
+      </div>
+
+      <!-- Row 2: Nav links -->
+      <div>
+        <div>
+          <ul>
+            <li><a href="https://www.hdbfs.com/about-us">About Us</a></li>
+            <li>
+              <a href="https://www.hdbfs.com/products">Products</a>
+              <ul>
+                <li><a href="https://www.hdbfs.com/products/personal-loan">Personal Loan</a></li>
+                <li><a href="https://www.hdbfs.com/products/business-loan">Business Loan</a></li>
+                <li><a href="https://www.hdbfs.com/products/loan-against-property">Loan Against Property</a></li>
+                <li><a href="https://www.hdbfs.com/products/gold-loan">Gold Loan</a></li>
+                <li><a href="https://www.hdbfs.com/products/two-wheeler-loan">Two Wheeler Loan</a></li>
+                <li><a href="https://www.hdbfs.com/products/commercial-vehicle-loan">Commercial Vehicle Loan</a></li>
+              </ul>
+            </li>
+            <li><a href="https://www.hdbfs.com/offers-by-hdbfs">Offers</a></li>
+            <li><a href="https://www.hdbfs.com/blogs">Blogs</a></li>
+            <li><a href="https://www.hdbfs.com/investors">Investors</a></li>
+            <li><a href="https://www.hdbfs.com/careers">Careers</a></li>
+            <li><a href="https://www.hdbfs.com/corporate-social-responsibility/">CSR</a></li>
+          </ul>
+        </div>
+        <div></div>
+      </div>
+
+      <!-- Row 3: CTA links -->
+      <div>
+        <div>
+          <ul>
+            <li><a href="https://onthego.hdbfs.com/">My Account</a></li>
+            <li><a href="https://hdbfs.autonom8.com/flow/v2/hpages/DIY?utm_source=Org_Homepage_Header&utm_medium=website&Product=PreAppPL">Pre Approved Loan</a></li>
+            <li><a href="https://www.hdbfs.com/customer-services/make-payment">Make Payment</a></li>
+          </ul>
+        </div>
+        <div></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<main>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     HDBFS HERO — Ticker + Banner
+═══════════════════════════════════════════════════════════════ -->
+<div class="hdbfs-hero-wrapper">
+  <div class="hdbfs-hero-container">
+    <div class="hdbfs-hero block" data-block-name="hdbfs-hero" data-block-status="loading">
+
+      <!-- Row 1: Ticker items -->
+      <div>
+        <div>
+          <ul>
+            <li><a href="https://www.hdbfs.com/customer-services/customer-awareness-week">HDBFS - Celebrating Customer Service Week</a> | <a href="https://www.hdbfs.com/pdf/Website_Publication_Q3FY26_HDB_Version1-2_Final_20122025.pdf">ARC Sale Process Note Swiss Challenge Web Notice</a></li>
+          </ul>
+        </div>
+        <div></div>
+      </div>
+
+      <!-- Row 2: Heading -->
+      <div>
+        <div><h1>Personal Loan</h1></div>
+        <div></div>
+      </div>
+
+      <!-- Row 3: Tag pills -->
+      <div>
+        <div>Fast | Secure | Hassle-Free</div>
+        <div></div>
+      </div>
+
+      <!-- Row 4: CTA -->
+      <div>
+        <div><a href="https://synergy.hdbfs.com/customer_kyc_update/">Apply Now</a></div>
+        <div>Apply Now</div>
+      </div>
+
+      <!-- Row 5: Background image (use a placeholder in test) -->
+      <div>
+        <div>
+          <!-- In production this would be a <picture> block -->
+          <!-- Showing a gradient placeholder via CSS fallback -->
+        </div>
+        <div></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     HDBFS PRODUCTS — Explore Our Products
+═══════════════════════════════════════════════════════════════ -->
+<div class="hdbfs-products-wrapper">
+  <div class="hdbfs-products-container">
+    <div class="hdbfs-products block" data-block-name="hdbfs-products" data-block-status="loading">
+
+      <!-- Row 0: Heading -->
+      <div>
+        <div>EXPLORE OUR PRODUCTS</div>
+        <div></div>
+      </div>
+
+      <!-- Product rows: col 0 = image, col 1 = name + link -->
+      <div>
+        <div><img src="https://www.hdbfs.com/themes/custom/hdbfs/images/new-img/personal.png" alt="Personal Loan"></div>
+        <div><a href="https://www.hdbfs.com/products/personal-loan">Personal Loan</a></div>
+      </div>
+      <div>
+        <div><img src="https://www.hdbfs.com/themes/custom/hdbfs/images/new-img/money.png" alt="Salaried Personal Loan"></div>
+        <div><a href="https://www.hdbfs.com/products/personal-loan">Salaried Personal Loan</a></div>
+      </div>
+      <div>
+        <div><img src="https://www.hdbfs.com/themes/custom/hdbfs/images/new-img/business-loan.png" alt="Business Loan"></div>
+        <div><a href="https://www.hdbfs.com/products/business-loan">Business Loan</a></div>
+      </div>
+      <div>
+        <div><img src="https://www.hdbfs.com/themes/custom/hdbfs/images/new-img/assets.png" alt="Loan Against Property"></div>
+        <div><a href="https://www.hdbfs.com/products/loan-against-property">Loan Against Property</a></div>
+      </div>
+      <div>
+        <div><img src="https://www.hdbfs.com/themes/custom/hdbfs/images/new-img/gold-ingots.png" alt="Gold Loan"></div>
+        <div><a href="https://www.hdbfs.com/products/gold-loan">Gold Loan</a></div>
+      </div>
+      <div>
+        <div><img src="https://www.hdbfs.com/themes/custom/hdbfs/images/new-img/bycicle.png" alt="Two Wheeler Loan"></div>
+        <div><a href="https://www.hdbfs.com/products/two-wheeler-loan">Two Wheeler Loan</a></div>
+      </div>
+      <div>
+        <div><img src="https://www.hdbfs.com/themes/custom/hdbfs/images/new-img/car-loan-1.png" alt="Auto Loan"></div>
+        <div><a href="https://www.hdbfs.com/products/auto-loan">Auto Loan</a></div>
+      </div>
+      <div>
+        <div><img src="https://www.hdbfs.com/themes/custom/hdbfs/images/new-img/maintenance.png" alt="Commercial Vehicle Loan"></div>
+        <div><a href="https://www.hdbfs.com/products/commercial-vehicle-loan">Commercial Vehicle Loan</a></div>
+      </div>
+      <div>
+        <div><img src="https://www.hdbfs.com/themes/custom/hdbfs/images/new-img/maintenance.png" alt="Construction Equipment Loan"></div>
+        <div><a href="https://www.hdbfs.com/products/construction-equipment-loan">Construction Equipment Loan</a></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     HDBFS CUSTOMER SERVICE
+═══════════════════════════════════════════════════════════════ -->
+<div class="hdbfs-customer-service-wrapper">
+  <div class="hdbfs-customer-service-container">
+    <div class="hdbfs-customer-service block" data-block-name="hdbfs-customer-service" data-block-status="loading">
+
+      <!-- Row 0: Heading -->
+      <div>
+        <div>CUSTOMER SERVICE</div>
+        <div></div>
+      </div>
+
+      <!-- Service cards: col 0 = image, col 1 = title + desc, col 2 = CTA -->
+      <div>
+        <div><img src="https://www.hdbfs.com/themes/custom/hdbfs/images/make-paymentN.webp" alt="Make Payment" loading="lazy"></div>
+        <div><h3>Quick Pay</h3>Pay your outstanding EMIs online with simple &amp; easy steps</div>
+        <div><a href="https://www.hdbfs.com/customer-services/make-payment">Quick Pay</a></div>
+      </div>
+      <div>
+        <div><img src="https://www.hdbfs.com/themes/custom/hdbfs/images/digital-registrationN.webp" alt="E-Mandate Registration" loading="lazy"></div>
+        <div><h3>E-Mandate Registration</h3></div>
+        <div><a href="https://www.hdbfs.com/customer-services/eNACH-Registration">Click Here</a></div>
+      </div>
+      <div>
+        <div><img src="https://www.hdbfs.com/themes/custom/hdbfs/images/loan-report_22082025.png" alt="Check Loan Status" loading="lazy"></div>
+        <div><h3>Check Loan Status</h3></div>
+        <div><a href="https://synergy.hdbfs.com/loan-status/">Check Now</a></div>
+      </div>
+      <div>
+        <div><img src="https://www.hdbfs.com/themes/custom/hdbfs/images/customer-portalN.webp" alt="Customer Portal" loading="lazy"></div>
+        <div><h3>Customer Portal</h3>Customer portal to manage your account</div>
+        <div><a href="https://onthego.hdbfs.com/">Sign In</a></div>
+      </div>
+      <div>
+        <div><img src="https://www.hdbfs.com/themes/custom/hdbfs/images/whts-app-iconN.webp" alt="WhatsApp" loading="lazy"></div>
+        <div><h3>WhatsApp</h3>Get your account details and more on WhatsApp</div>
+        <div><a href="https://api.whatsapp.com/send?phone=917304926929&text=Hi">Say 'Hi'</a></div>
+      </div>
+      <div>
+        <div><img src="https://www.hdbfs.com/themes/custom/hdbfs/images/AskPriya-gifN.webp" alt="Ask Priya" loading="lazy"></div>
+        <div><h3>#AskPriya</h3>Your virtual assistant to answer all your queries</div>
+        <div><a href="#">Ask Priya</a></div>
+      </div>
+      <div>
+        <div><img src="https://www.hdbfs.com/themes/custom/hdbfs/images/missed-callN.webp" alt="Missed Call Service" loading="lazy"></div>
+        <div><h3>Missed Call Service</h3></div>
+        <div><a href="tel:080-69856108">Call Now</a></div>
+      </div>
+      <div>
+        <div><img src="https://www.hdbfs.com/themes/custom/hdbfs/images/nearest-branchN.webp" alt="Find Nearest Branch" loading="lazy"></div>
+        <div><h3>Find Nearest Branch</h3></div>
+        <div><a href="https://www.hdbfs.com/branch">Locate Now</a></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     HDBFS IMPORTANT INFORMATION
+═══════════════════════════════════════════════════════════════ -->
+<div class="hdbfs-important-info-wrapper">
+  <div class="hdbfs-important-info-container">
+    <div class="hdbfs-important-info block" data-block-name="hdbfs-important-info" data-block-status="loading">
+
+      <!-- Row 0: Heading -->
+      <div>
+        <div>IMPORTANT INFORMATION</div>
+        <div></div>
+      </div>
+
+      <!-- Card rows -->
+      <div>
+        <div><img src="https://www.hdbfs.com/themes/custom/hdbfs/images/new-img/important.png" alt="Security Alert" loading="lazy"></div>
+        <div><h4>Security Alert</h4>Protect yourself from new financial fraud. Never entertain unsolicited phone calls, especially when the caller asks for a fund transfer.</div>
+        <div><a href="https://www.hdbfs.com/themes/custom/hdbfs/pdf/Information_Security_Awareness.pdf">Know More</a></div>
+      </div>
+      <div>
+        <div><img src="https://www.hdbfs.com/themes/custom/hdbfs/images/new-img/NPA-classification-nerms.png" alt="NPA Classification Norms" loading="lazy"></div>
+        <div><h4>NPA Classification Norms</h4>RBI has issued a clarification on prudential norms on asset classification and provisioning norms. Click to check revised NPA norms.</div>
+        <div><a href="https://www.hdbfs.com/customer-services/npa-classification-norms">Know More</a></div>
+      </div>
+      <div>
+        <div><img src="https://www.hdbfs.com/themes/custom/hdbfs/images/new-img/important.png" alt="Important Alert" loading="lazy"></div>
+        <div><h4>Important Alert</h4>HDB Financial Services Ltd. or its representatives NEVER ask for any payments to process loans.</div>
+        <div><a href="https://www.hdbfs.com/customer-services/notices">Know More</a></div>
+      </div>
+      <div>
+        <div><img src="https://www.hdbfs.com/themes/custom/hdbfs/images/new-img/floating-rate.png" alt="Floating Reference Rate" loading="lazy"></div>
+        <div><h4>Floating Reference Rate (FRR)</h4>Floating Rate of Interest, when applicable to the loan facility, shall mean the Floating Reference Rate (FRR).</div>
+        <div><a href="https://www.hdbfs.com/customer-services/interest-rates#intrestratepagetabfour">Know More</a></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     HDBFS TESTIMONIALS
+═══════════════════════════════════════════════════════════════ -->
+<div class="hdbfs-testimonials-wrapper">
+  <div class="hdbfs-testimonials-container">
+    <div class="hdbfs-testimonials block" data-block-name="hdbfs-testimonials" data-block-status="loading">
+
+      <!-- Row 0: Heading -->
+      <div>
+        <div>TESTIMONIALS</div>
+        <div></div>
+      </div>
+
+      <!-- Video testimonials: col 0 = name + video link, col 1 = (blank / quote) -->
+      <div>
+        <div><a href="https://www.youtube.com/embed/jAkGgp55MY4">Testimonial</a> MUKESH KUMAR GUPTA</div>
+        <div></div>
+      </div>
+      <div>
+        <div><a href="https://www.youtube.com/embed/NzQ6ghf7MPs?rel=0">Testimonial</a> RAHUL CHAUDHRY</div>
+        <div></div>
+      </div>
+      <div>
+        <div><a href="https://www.youtube.com/embed/oqQAtRQa8Gc">Testimonial</a> HARVINDER SINGH</div>
+        <div></div>
+      </div>
+      <div>
+        <div><a href="https://www.youtube.com/embed/eb_63Jz_BnI">Testimonial</a> AMIT SHARMA</div>
+        <div></div>
+      </div>
+      <div>
+        <div>ABHISHEK JAIN</div>
+        <div>The Process of application, approval and disbursal was quick. The Loan officer created a customized solution for my specific needs. You made the process of getting a loan simple - right from documentation to disbursal and it hence saved a lot of my time.</div>
+      </div>
+      <div>
+        <div>ASIF HASAN</div>
+        <div>Your variety of loan products available made it easier for small businessmen like me with the usual ups and down of income, to operate and grow my business profitably with options that cater to every need. HDB turned to be the best choice after all.</div>
+      </div>
+      <div>
+        <div><a href="https://youtube.com/shorts/B1by8Es9EFQ">Testimonial</a> MANISH SUNDARAM</div>
+        <div></div>
+      </div>
+      <div>
+        <div><a href="https://youtube.com/shorts/rnYG0Aw5F_Y?feature=share">Testimonial</a> K. ARIVUSELVA THANJAVUR</div>
+        <div></div>
+      </div>
+      <div>
+        <div><a href="https://www.youtube.com/shorts/QjM9N7AKdu4">Testimonial</a> VIJAY LAXMI RAUT</div>
+        <div></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     HDBFS BLOGS
+═══════════════════════════════════════════════════════════════ -->
+<div class="hdbfs-blogs-wrapper">
+  <div class="hdbfs-blogs-container">
+    <div class="hdbfs-blogs block" data-block-name="hdbfs-blogs" data-block-status="loading">
+
+      <!-- Row 0: Heading -->
+      <div>
+        <div>BLOGS</div>
+        <div></div>
+      </div>
+
+      <!-- Blog rows: col 0 = title link, col 1 = excerpt -->
+      <div>
+        <div><a href="https://www.hdbfs.com/products/two-wheeler-loan/blogs/two-wheeler-loan-for-first-time-buyers">Buying Your First Vehicle? Here's How a Two-Wheeler Loan Can Help</a></div>
+        <div>Purchasing your first two-wheeler offers practical benefits such as improved mobility, the flexibility to travel at your convenience, and easier navigation through traffic.</div>
+      </div>
+      <div>
+        <div><a href="https://www.hdbfs.com/products/loan-against-property/blogs/loan-against-property-lap">Loan Against Property: Access More Funds at Lower Rates</a></div>
+        <div>When you need a significant amount of money for personal or business needs, finding the right financing option can make all the difference.</div>
+      </div>
+      <div>
+        <div><a href="https://www.hdbfs.com/blogs/loan-against-land-mortgage">Unlock the Value of Your Land: Loan Against Property &amp; Land Mortgage</a></div>
+        <div>If you are a land owner who is considering converting the land into capital, then you don't have to stress.</div>
+      </div>
+      <div>
+        <div><a href="https://www.hdbfs.com/blogs/loan-against-property-lap-explained">Loan Against Property From HDBFS: Eligibility, Rates &amp; Benefits Explained</a></div>
+        <div>Did you know the global real estate loan market is forecasted to grow from around USD 11.4 trillion in 2024 to USD 35.4 trillion by 2034?</div>
+      </div>
+
+      <!-- View All link row -->
+      <div>
+        <div><a href="https://www.hdbfs.com/blogs">View All</a></div>
+        <div></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     HDBFS CSR — Corporate Social Responsibility
+═══════════════════════════════════════════════════════════════ -->
+<div class="hdbfs-csr-wrapper">
+  <div class="hdbfs-csr-container">
+    <div class="hdbfs-csr block" data-block-name="hdbfs-csr" data-block-status="loading">
+
+      <!-- Row 0: Heading -->
+      <div>
+        <div>CORPORATE SOCIAL RESPONSIBILITY</div>
+        <div></div>
+      </div>
+
+      <!-- CSR rows: col 0 = title + video link, col 1 = desc + read more -->
+      <div>
+        <div><a href="https://youtu.be/SMGl-HRK3WY?si=PhHtCN2miaUiZ0RZ">Mask Distribution Drive</a></div>
+        <div>HDB is committed towards empowering the communities around us by enabling them with sustainable livelihoods and ensuring good health. <a href="https://www.hdbfs.com/corporate-social-responsibility/social-and-humanitarian-initiatives">Read More</a></div>
+      </div>
+      <div>
+        <div><a href="https://youtu.be/3TpPfxmUiQc?si=zIBBMtvkWady7Pn3">Transport Aarogyam Kendra</a></div>
+        <div>As a part of its commitment towards society, HDB Financial Services introduces Transport Aarogyam Kendra - a Physiotherapy and Healthcare center for truckers, offering counseling and therapeutic services. <a href="https://www.hdbfs.com/corporate-social-responsibility/healthcare-and-sanitation/#Transport-Aarogyam-Kendra">Read More</a></div>
+      </div>
+      <div>
+        <div><a href="https://www.hdbfs.com/corporate-social-responsibility/healthcare-and-sanitation/#preventive-healthcare-and-water-sanitation">Preventive Healthcare and Water Sanitation</a></div>
+        <div>HDB supports a wide range of social initiatives promoting good health across all age groups in under-served urban slums and remote rural areas. <a href="https://www.hdbfs.com/corporate-social-responsibility/healthcare-and-sanitation/#preventive-healthcare-and-water-sanitation">Read More</a></div>
+      </div>
+      <div>
+        <div><a href="https://www.hdbfs.com/corporate-social-responsibility/literacy-and-livelihoods">Literacy and Livelihoods</a></div>
+        <div>HDB strives to empower unemployed men &amp; women, school dropouts and final year students through a holistic vocational training program followed by linkages to appropriate livelihoods. <a href="https://www.hdbfs.com/corporate-social-responsibility/literacy-and-livelihoods">Read More</a></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</main><!-- /main -->
+
+<!-- ═══════════════════════════════════════════════════════════════
+     HDBFS FOOTER (inline — simple)
+═══════════════════════════════════════════════════════════════ -->
+<footer class="hdbfs-footer">
+  <style>
+    .hdbfs-footer {
+      background: #1a1a2e;
+      color: rgba(255,255,255,0.85);
+      font-family: 'Roboto', Arial, sans-serif;
+      padding: 48px 40px 24px;
+    }
+    .hdbfs-footer__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+      max-width: 1200px;
+      margin: 0 auto 32px;
+    }
+    .hdbfs-footer__col h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+    }
+    .hdbfs-footer__col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .hdbfs-footer__col a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+    .hdbfs-footer__col a:hover { color: #fff; }
+    .hdbfs-footer__bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+    }
+    .hdbfs-footer__alert {
+      background: #c8102e;
+      color: #fff;
+      text-align: center;
+      font-size: 13px;
+      padding: 10px 16px;
+    }
+  </style>
+
+  <div class="hdbfs-footer__alert">
+    HDB Financial Services Ltd. or its representatives NEVER ask for any payments to process loans.
+    <a href="https://www.hdbfs.com/customer-services/notices" style="color:#fff;text-decoration:underline;margin-left:8px;">Know More</a>
+  </div>
+
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="hdbfs-footer__grid">
+      <div class="hdbfs-footer__col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="https://www.hdbfs.com/about-us">About Us</a></li>
+          <li><a href="https://www.hdbfs.com/products">Products</a></li>
+          <li><a href="https://www.hdbfs.com/customer-services/make-payment">Make Payment</a></li>
+          <li><a href="https://www.hdbfs.com/blogs">Blogs</a></li>
+          <li><a href="https://www.hdbfs.com/investors">Investors</a></li>
+          <li><a href="https://www.hdbfs.com/careers">Careers</a></li>
+        </ul>
+      </div>
+      <div class="hdbfs-footer__col">
+        <h4>Consumer Loans</h4>
+        <ul>
+          <li><a href="https://www.hdbfs.com/products/personal-loan">Personal Loan</a></li>
+          <li><a href="https://www.hdbfs.com/products/auto-loan">Auto Loan</a></li>
+          <li><a href="https://www.hdbfs.com/products/two-wheeler-loan">Two Wheeler Loan</a></li>
+          <li><a href="https://www.hdbfs.com/products/consumer-durables-loan">Consumer Durables Loan</a></li>
+        </ul>
+      </div>
+      <div class="hdbfs-footer__col">
+        <h4>Enterprise Loans</h4>
+        <ul>
+          <li><a href="https://www.hdbfs.com/products/business-loan">Business Loan</a></li>
+          <li><a href="https://www.hdbfs.com/products/loan-against-property">Loan Against Property</a></li>
+          <li><a href="https://www.hdbfs.com/products/gold-loan">Gold Loan</a></li>
+          <li><a href="https://www.hdbfs.com/products/enterprise-business-loan">Enterprise Business Loan</a></li>
+        </ul>
+      </div>
+      <div class="hdbfs-footer__col">
+        <h4>Asset Finance</h4>
+        <ul>
+          <li><a href="https://www.hdbfs.com/products/commercial-vehicle-loan">Commercial Vehicle Loan</a></li>
+          <li><a href="https://www.hdbfs.com/products/construction-equipment-loan">Construction Equipment Loan</a></li>
+          <li><a href="https://www.hdbfs.com/products/tractor-loan">Tractor Loan</a></li>
+        </ul>
+      </div>
+      <div class="hdbfs-footer__col">
+        <h4>Connect With Us</h4>
+        <ul>
+          <li><a href="https://www.facebook.com/HDBFinancialServices">Facebook</a></li>
+          <li><a href="https://www.twitter.com/hdbfsl">Twitter / X</a></li>
+          <li><a href="https://www.linkedin.com/company/hdb-financial-services-ltd">LinkedIn</a></li>
+          <li><a href="https://youtube.com/c/HDBFinancialServicesLtd">YouTube</a></li>
+          <li><a href="https://instagram.com/hdbfinancialservices">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="hdbfs-footer__bottom">
+      <span>© HDB Financial Services Ltd. All rights reserved</span>
+      <span>CIN: L65993GJ2007PLC051028 | Tel: 022-49116300</span>
+      <div style="display:flex;gap:16px;">
+        <a href="https://www.hdbfs.com/customer-services/disclaimer" style="color:rgba(255,255,255,.5);text-decoration:none;font-size:12px;">Disclaimer</a>
+        <a href="https://www.hdbfs.com/customer-services/terms-conditions" style="color:rgba(255,255,255,.5);text-decoration:none;font-size:12px;">Terms</a>
+        <a href="https://www.hdbfs.com/customer-services/privacy" style="color:rgba(255,255,255,.5);text-decoration:none;font-size:12px;">Privacy</a>
+        <a href="https://www.hdbfs.com/sitemap" style="color:rgba(255,255,255,.5);text-decoration:none;font-size:12px;">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     Block decorators — load and initialise all blocks
+═══════════════════════════════════════════════════════════════ -->
+<script type="module">
+  import decorateNav        from './blocks/hdbfs-nav/hdbfs-nav.js';
+  import decorateHero       from './blocks/hdbfs-hero/hdbfs-hero.js';
+  import decorateProducts   from './blocks/hdbfs-products/hdbfs-products.js';
+  import decorateCS         from './blocks/hdbfs-customer-service/hdbfs-customer-service.js';
+  import decorateInfo       from './blocks/hdbfs-important-info/hdbfs-important-info.js';
+  import decorateTestimonials from './blocks/hdbfs-testimonials/hdbfs-testimonials.js';
+  import decorateBlogs      from './blocks/hdbfs-blogs/hdbfs-blogs.js';
+  import decorateCSR        from './blocks/hdbfs-csr/hdbfs-csr.js';
+
+  const init = (selector, fn) => {
+    const block = document.querySelector(selector);
+    if (!block) return;
+    fn(block);
+    block.dataset.blockStatus = 'loaded';
+  };
+
+  init('.hdbfs-nav.block',              decorateNav);
+  init('.hdbfs-hero.block',             decorateHero);
+  init('.hdbfs-products.block',         decorateProducts);
+  init('.hdbfs-customer-service.block', decorateCS);
+  init('.hdbfs-important-info.block',   decorateInfo);
+  init('.hdbfs-testimonials.block',     decorateTestimonials);
+  init('.hdbfs-blogs.block',            decorateBlogs);
+  init('.hdbfs-csr.block',              decorateCSR);
+</script>
+
+</body>
+</html>

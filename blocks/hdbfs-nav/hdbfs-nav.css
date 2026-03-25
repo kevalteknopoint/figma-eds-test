@@ -1,0 +1,280 @@
+/* =============================================================
+   HDBFS NAV — Sticky top navigation
+   Matches hdbfs.com header: white bg, red CTA, hamburger mobile
+   ============================================================= */
+
+@import url('../../styles/hdbfs-tokens.css');
+
+/* ── Reset EDS wrappers ── */
+.hdbfs-nav-wrapper,
+.hdbfs-nav-container {
+  max-width: unset !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ── Block shell ── */
+.hdbfs-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--hdbfs-color-nav-bg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  font-family: var(--hdbfs-font-family);
+}
+
+/* ── Inner flex container ── */
+.hdbfs-nav__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--hdbfs-space-16);
+  max-width: var(--hdbfs-max-width);
+  margin: 0 auto;
+  padding: 0 var(--hdbfs-section-pad-x);
+  height: var(--hdbfs-nav-height);
+}
+
+/* ── Logo ── */
+.hdbfs-nav__logo {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.hdbfs-nav__logo img,
+.hdbfs-nav__logo picture img {
+  height: 48px;
+  width: auto;
+  display: block;
+}
+
+.hdbfs-nav__logo-text {
+  font-size: var(--hdbfs-fs-lg);
+  font-weight: var(--hdbfs-fw-bold);
+  color: var(--hdbfs-color-red);
+}
+
+/* ── Desktop nav links ── */
+.hdbfs-nav__links {
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: var(--hdbfs-space-4);
+  flex: 1;
+  align-items: center;
+}
+
+.hdbfs-nav__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.hdbfs-nav__link {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: var(--hdbfs-space-8) var(--hdbfs-space-12);
+  font-size: var(--hdbfs-fs-sm);
+  font-weight: var(--hdbfs-fw-medium);
+  color: var(--hdbfs-color-text);
+  text-decoration: none;
+  border-radius: var(--hdbfs-radius-sm);
+  transition: color 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+
+.hdbfs-nav__link:hover,
+.hdbfs-nav__item.is-open > .hdbfs-nav__link {
+  color: var(--hdbfs-color-red);
+  background: var(--hdbfs-color-red-light);
+}
+
+/* Chevron */
+.hdbfs-nav__chevron {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+  margin-left: 2px;
+  flex-shrink: 0;
+}
+
+.hdbfs-nav__item.is-open .hdbfs-nav__chevron {
+  transform: rotate(-135deg) translateY(-2px);
+}
+
+/* ── Dropdown ── */
+.hdbfs-nav__dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  min-width: 200px;
+  background: var(--hdbfs-color-white);
+  border: 1px solid var(--hdbfs-color-border);
+  border-radius: var(--hdbfs-radius-md);
+  box-shadow: var(--hdbfs-shadow-md);
+  list-style: none;
+  padding: var(--hdbfs-space-8) 0;
+  margin: 0;
+  z-index: 200;
+}
+
+.hdbfs-nav__item.is-open .hdbfs-nav__dropdown {
+  display: block;
+}
+
+.hdbfs-nav__dropdown-link {
+  display: block;
+  padding: var(--hdbfs-space-8) var(--hdbfs-space-16);
+  font-size: var(--hdbfs-fs-sm);
+  color: var(--hdbfs-color-text);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+.hdbfs-nav__dropdown-link:hover {
+  background: var(--hdbfs-color-red-light);
+  color: var(--hdbfs-color-red);
+}
+
+/* ── CTA group (right side) ── */
+.hdbfs-nav__cta-group {
+  display: none;
+  align-items: center;
+  gap: var(--hdbfs-space-8);
+  margin-left: auto;
+}
+
+.hdbfs-nav__cta {
+  padding: var(--hdbfs-space-8) var(--hdbfs-space-16);
+  font-size: var(--hdbfs-fs-sm);
+  font-weight: var(--hdbfs-fw-medium);
+  border-radius: var(--hdbfs-radius-sm);
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+  border: 1px solid var(--hdbfs-color-border);
+  color: var(--hdbfs-color-text);
+  background: transparent;
+}
+
+.hdbfs-nav__cta:hover {
+  background: var(--hdbfs-color-bg);
+}
+
+.hdbfs-nav__cta--primary {
+  background: var(--hdbfs-color-red);
+  color: var(--hdbfs-color-white);
+  border-color: var(--hdbfs-color-red);
+}
+
+.hdbfs-nav__cta--primary:hover {
+  background: var(--hdbfs-color-red-dark);
+  border-color: var(--hdbfs-color-red-dark);
+}
+
+/* ── Hamburger ── */
+.hdbfs-nav__hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  padding: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.hdbfs-nav__hamburger span {
+  display: block;
+  height: 2px;
+  background: var(--hdbfs-color-text);
+  border-radius: 2px;
+  transition: transform 0.25s, opacity 0.25s;
+}
+
+.hdbfs-nav__hamburger.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hdbfs-nav__hamburger.is-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hdbfs-nav__hamburger.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Mobile drawer ── */
+.hdbfs-nav__drawer {
+  display: none;
+  position: fixed;
+  inset: var(--hdbfs-nav-height) 0 0 0;
+  background: var(--hdbfs-color-white);
+  overflow-y: auto;
+  padding: var(--hdbfs-space-16);
+  z-index: 999;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+}
+
+.hdbfs-nav__drawer.is-open {
+  transform: translateX(0);
+}
+
+.hdbfs-nav__drawer-links {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 0;
+}
+
+.hdbfs-nav__drawer-links .hdbfs-nav__link {
+  padding: var(--hdbfs-space-12) var(--hdbfs-space-8);
+  border-bottom: 1px solid var(--hdbfs-color-border);
+  font-size: var(--hdbfs-fs-md);
+  width: 100%;
+}
+
+.hdbfs-nav__drawer-links .hdbfs-nav__dropdown {
+  position: static;
+  display: none;
+  box-shadow: none;
+  border: none;
+  border-radius: 0;
+  padding-left: var(--hdbfs-space-16);
+}
+
+.hdbfs-nav__drawer-links .hdbfs-nav__item.is-open .hdbfs-nav__dropdown {
+  display: block;
+}
+
+/* ── Desktop breakpoint ── */
+@media (width >= 900px) {
+  .hdbfs-nav__links {
+    display: flex;
+  }
+
+  .hdbfs-nav__cta-group {
+    display: flex;
+  }
+
+  .hdbfs-nav__hamburger {
+    display: none;
+  }
+
+  .hdbfs-nav__drawer {
+    display: none !important;
+  }
+}

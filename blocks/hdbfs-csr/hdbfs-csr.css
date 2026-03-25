@@ -1,0 +1,162 @@
+/* =============================================================
+   HDBFS CSR — Corporate Social Responsibility section
+   Matches hdbfs.com: dark overlay cards with video thumbnails
+   ============================================================= */
+
+@import url('../../styles/hdbfs-tokens.css');
+
+.hdbfs-csr-wrapper,
+.hdbfs-csr-container {
+  max-width: unset !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.hdbfs-csr {
+  background: var(--hdbfs-color-bg-dark);
+  padding: var(--hdbfs-space-64) 0;
+  font-family: var(--hdbfs-font-family);
+}
+
+.hdbfs-csr__wrapper {
+  max-width: var(--hdbfs-max-width);
+  margin: 0 auto;
+  padding: 0 var(--hdbfs-section-pad-x);
+}
+
+/* ── Heading ── */
+.hdbfs-csr__heading {
+  text-align: center;
+  font-family: var(--hdbfs-font-heading);
+  font-size: var(--hdbfs-fs-2xl);
+  font-weight: var(--hdbfs-fw-bold);
+  color: var(--hdbfs-color-white);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 var(--hdbfs-space-40);
+  position: relative;
+}
+
+.hdbfs-csr__heading::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--hdbfs-color-red);
+  margin: var(--hdbfs-space-12) auto 0;
+  border-radius: 2px;
+}
+
+/* ── Grid ── */
+.hdbfs-csr__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--hdbfs-space-24);
+}
+
+@media (width >= 600px) {
+  .hdbfs-csr__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 900px) {
+  .hdbfs-csr__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ── Card ── */
+.hdbfs-csr__card {
+  background: rgba(255,255,255,0.06);
+  border-radius: var(--hdbfs-radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.hdbfs-csr__card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+/* ── Video thumbnail ── */
+.hdbfs-csr__video {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.hdbfs-csr__video-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s;
+}
+
+.hdbfs-csr__video:hover .hdbfs-csr__video-thumb {
+  transform: scale(1.05);
+}
+
+.hdbfs-csr__play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.35);
+  transition: background 0.2s;
+}
+
+.hdbfs-csr__video:hover .hdbfs-csr__play {
+  background: rgba(200,16,46,0.55);
+}
+
+.hdbfs-csr__play svg {
+  width: 40px;
+  height: 40px;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+}
+
+/* ── Card body ── */
+.hdbfs-csr__card-body {
+  padding: var(--hdbfs-space-20);
+  display: flex;
+  flex-direction: column;
+  gap: var(--hdbfs-space-8);
+  flex: 1;
+}
+
+.hdbfs-csr__card-title {
+  font-size: var(--hdbfs-fs-md);
+  font-weight: var(--hdbfs-fw-bold);
+  color: var(--hdbfs-color-white);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.hdbfs-csr__card-desc {
+  font-size: var(--hdbfs-fs-sm);
+  color: rgba(255,255,255,0.7);
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
+}
+
+.hdbfs-csr__read-more {
+  display: inline-block;
+  font-size: var(--hdbfs-fs-sm);
+  font-weight: var(--hdbfs-fw-medium);
+  color: var(--hdbfs-color-red);
+  text-decoration: none;
+  margin-top: var(--hdbfs-space-8);
+  transition: color 0.2s;
+}
+
+.hdbfs-csr__read-more:hover {
+  color: #ff3d5e;
+}

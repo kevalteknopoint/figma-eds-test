@@ -222,15 +222,34 @@ export default function decorate(block) {
   divider.className = 'mofsl-group__divider';
   divider.setAttribute('aria-hidden', 'true');
 
-  // Subsidiaries grid
-  const subList = document.createElement('ul');
-  subList.className = 'mofsl-group__subsidiaries';
-  subList.setAttribute('aria-label', 'MOFSL group subsidiaries');
+  // Subsidiaries grid — split into rows of 3 with dividers between
+  const subsContainer = document.createElement('div');
+  subsContainer.className = 'mofsl-group__subs-container';
 
-  subsidiaries.forEach((sub) => subList.append(buildSubItem(sub)));
+  const COLS = 3;
+  const rows2d = [];
+  for (let i = 0; i < subsidiaries.length; i += COLS) {
+    rows2d.push(subsidiaries.slice(i, i + COLS));
+  }
+
+  rows2d.forEach((chunk, idx) => {
+    const subList = document.createElement('ul');
+    subList.className = 'mofsl-group__subsidiaries';
+    subList.setAttribute('aria-label', `MOFSL group subsidiaries row ${idx + 1}`);
+    chunk.forEach((sub) => subList.append(buildSubItem(sub)));
+    subsContainer.append(subList);
+
+    // Add a divider between rows (not after the last one)
+    if (idx < rows2d.length - 1) {
+      const rowDivider = document.createElement('hr');
+      rowDivider.className = 'mofsl-group__divider mofsl-group__divider--sub';
+      rowDivider.setAttribute('aria-hidden', 'true');
+      subsContainer.append(rowDivider);
+    }
+  });
 
   card.append(primary);
-  if (subsidiaries.length) card.append(divider, subList);
+  if (subsidiaries.length) card.append(divider, subsContainer);
 
   // ── Replace authored content ────────────────────────────────────
   block.innerHTML = '';

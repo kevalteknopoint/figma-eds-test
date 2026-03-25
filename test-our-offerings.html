@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Offerings Block — Test</title>
+  <link rel="stylesheet" href="styles/pwm-tokens.css">
+  <link rel="stylesheet" href="blocks/our-offerings/our-offerings.css">
+  <style>
+    /* Minimal reset so the block renders standalone */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #f8f3ef; }
+  </style>
+</head>
+<body class="appear">
+
+  <!--
+    Simulating the AEM EDS authored table structure.
+    The block decorator will read these rows and rebuild the DOM.
+  -->
+  <div class="our-offerings-wrapper">
+    <div class="our-offerings-container">
+      <div class="our-offerings block" data-block-name="our-offerings" data-block-status="loading">
+
+        <!-- Row 0: Hero image (col 0) | Decorative mask (col 1) -->
+        <div>
+          <div><img src="icons/our-offerings-hero.png" alt="Investment meeting" /></div>
+          <div><img src="icons/our-offerings-mask.svg" alt="" /></div>
+        </div>
+
+        <!-- Row 1: Title / Eyebrow -->
+        <div>
+          <div>Investment Needs</div>
+          <div></div>
+        </div>
+
+        <!-- Row 2: Description -->
+        <div>
+          <div>Create, protect, and preserve your personal wealth through disciplined strategies designed for long-term growth and financial security.</div>
+          <div></div>
+        </div>
+
+        <!-- Row 3: CTA link (col 0) | CTA label (col 1) -->
+        <div>
+          <div><a href="/investment-needs">Know more</a></div>
+          <div>Know more</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import decorate from './blocks/our-offerings/our-offerings.js';
+    const block = document.querySelector('.our-offerings.block');
+    decorate(block);
+    block.dataset.blockStatus = 'loaded';
+  </script>
+</body>
+</html>

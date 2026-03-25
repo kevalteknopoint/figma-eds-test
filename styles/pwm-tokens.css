@@ -74,6 +74,7 @@
   --pwm-font-size-pwmh4: 32px;
   --pwm-font-size-pwmh6: 24px;
   --pwm-font-size-subheader: 20px;
+  --pwm-font-size-subheader-lg: 24px;
   --pwm-font-size-body-lg: 18px;
   --pwm-font-size-body-md: 16px;
   --pwm-font-size-body-sm: 14px;
@@ -85,6 +86,7 @@
   --pwm-font-lh-pwmh4: 40px;
   --pwm-font-lh-pwmh6: 28px;
   --pwm-font-lh-subheader: 28px;
+  --pwm-font-lh-subheader-lg: 32px;
   --pwm-font-lh-body-lg: 24px;
   --pwm-font-lh-body-md: 20px;
   --pwm-font-lh-body-sm: 16px;

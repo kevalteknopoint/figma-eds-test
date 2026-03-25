@@ -55,18 +55,21 @@
 .mofsl-group__card-deco {
   display: none; /* hidden on mobile to avoid distraction */
   position: absolute;
-  inset-inline-end: 0;
-  inset-block-end: 0;
-  width: 28%;
-  max-width: 344px;
+  inset-inline-end: 60px;
+  top: 50%;
+  transform: translateY(-30%);
+  width: 344px;
+  height: 469px;
   pointer-events: none;
-  opacity: 0.45;
+  opacity: 0.35;
 }
 
-.mofsl-group__card-deco img {
+.mofsl-group__card-deco img,
+.mofsl-group__card-deco picture {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: contain;
 }
 
 /* ── Primary stat row (PWM name + AUM hero stat) ── */
@@ -131,7 +134,14 @@
 .mofsl-group__divider {
   border: 0;
   border-block-start: 1px solid var(--pwm-color-gold-500);
-  margin-block: var(--pwm-space-24);
+  margin-block: var(--pwm-space-32);
+}
+
+/* ── Subsidiaries container ── */
+.mofsl-group__subs-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pwm-space-32);
 }
 
 /* ── Subsidiary grid ── */
@@ -144,12 +154,18 @@
   margin: 0;
 }
 
+/* Sub-row divider (between subsidiary rows) */
+.mofsl-group__divider--sub {
+  margin-block: 0;
+}
+
 /* ── Single subsidiary item ── */
 .mofsl-group__sub {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: var(--pwm-space-8);
+  min-height: 166px;
+  width: 200px;
 }
 
 .mofsl-group__sub-header {
@@ -195,7 +211,8 @@
   display: flex;
   flex-direction: column;
   gap: var(--pwm-space-4);
-  margin-block-start: var(--pwm-space-20);
+  justify-content: flex-end;
+  height: 72px;
 }
 
 .mofsl-group__sub-value {
@@ -224,7 +241,11 @@
   }
 
   .mofsl-group__card {
-    padding: var(--pwm-space-32) var(--pwm-space-48);
+    padding: var(--pwm-space-40) var(--pwm-space-48);
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .mofsl-group__card-deco {
@@ -233,9 +254,12 @@
 
   /* 3-column grid for subsidiaries on desktop */
   .mofsl-group__subsidiaries {
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--pwm-space-32) var(--pwm-space-60);
-    /* Leave right ~30% free for decorative SVG */
+    grid-template-columns: repeat(3, 200px);
+    gap: 0 var(--pwm-space-60);
+  }
+
+  /* Leave right ~30% free for decorative SVG */
+  .mofsl-group__subs-container {
     max-width: 76%;
   }
 }

@@ -1,0 +1,171 @@
+/* =============================================================
+   HDBFS PRODUCTS — "Explore Our Products" carousel section
+   Matches hdbfs.com: white bg, centered heading, icon cards
+   ============================================================= */
+
+@import url('../../styles/hdbfs-tokens.css');
+
+.hdbfs-products-wrapper,
+.hdbfs-products-container {
+  max-width: unset !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.hdbfs-products {
+  background: var(--hdbfs-color-white);
+  padding: var(--hdbfs-space-48) 0;
+  font-family: var(--hdbfs-font-family);
+}
+
+/* ── Section shell ── */
+.hdbfs-products__section {
+  max-width: var(--hdbfs-max-width);
+  margin: 0 auto;
+  padding: 0 var(--hdbfs-section-pad-x);
+}
+
+/* ── Heading ── */
+.hdbfs-products__heading {
+  text-align: center;
+  font-family: var(--hdbfs-font-heading);
+  font-size: var(--hdbfs-fs-2xl);
+  font-weight: var(--hdbfs-fw-bold);
+  color: var(--hdbfs-color-red);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0 0 var(--hdbfs-space-32);
+  position: relative;
+}
+
+.hdbfs-products__heading::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--hdbfs-color-red);
+  margin: var(--hdbfs-space-12) auto 0;
+  border-radius: 2px;
+}
+
+/* ── Carousel wrapper ── */
+.hdbfs-products__carousel-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--hdbfs-space-8);
+  position: relative;
+}
+
+/* ── Scrollable track ── */
+.hdbfs-products__track {
+  display: flex;
+  gap: var(--hdbfs-space-16);
+  overflow: hidden;
+  flex: 1;
+  transition: transform 0.35s ease;
+}
+
+/* ── Product card ── */
+.hdbfs-products__card {
+  flex: 0 0 calc(50% - 8px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--hdbfs-space-12);
+  padding: var(--hdbfs-space-24) var(--hdbfs-space-16);
+  background: var(--hdbfs-color-white);
+  border: 1px solid var(--hdbfs-color-border);
+  border-radius: var(--hdbfs-radius-md);
+  text-decoration: none;
+  color: var(--hdbfs-color-text);
+  transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
+  cursor: pointer;
+}
+
+.hdbfs-products__card:hover {
+  box-shadow: var(--hdbfs-shadow-card);
+  border-color: var(--hdbfs-color-red);
+  transform: translateY(-4px);
+}
+
+@media (width >= 480px) {
+  .hdbfs-products__card {
+    flex: 0 0 calc(33.333% - 11px);
+  }
+}
+
+@media (width >= 768px) {
+  .hdbfs-products__card {
+    flex: 0 0 calc(25% - 12px);
+  }
+}
+
+@media (width >= 1024px) {
+  .hdbfs-products__card {
+    flex: 0 0 calc(16.666% - 14px);
+  }
+}
+
+/* ── Card image ── */
+.hdbfs-products__card-img {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hdbfs-products__card-img img,
+.hdbfs-products__card-img picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ── Card label ── */
+.hdbfs-products__card-name {
+  font-size: var(--hdbfs-fs-sm);
+  font-weight: var(--hdbfs-fw-medium);
+  color: var(--hdbfs-color-text);
+  text-align: center;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.hdbfs-products__card:hover .hdbfs-products__card-name {
+  color: var(--hdbfs-color-red);
+}
+
+/* ── Nav buttons ── */
+.hdbfs-products__nav {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--hdbfs-color-white);
+  border: 1px solid var(--hdbfs-color-border);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: var(--hdbfs-shadow-sm);
+  transition: background 0.2s, border-color 0.2s;
+  padding: 0;
+}
+
+.hdbfs-products__nav:hover:not(:disabled) {
+  background: var(--hdbfs-color-red);
+  border-color: var(--hdbfs-color-red);
+  color: var(--hdbfs-color-white);
+}
+
+.hdbfs-products__nav:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.hdbfs-products__nav svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}

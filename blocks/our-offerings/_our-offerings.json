@@ -1,0 +1,46 @@
+{
+  "id": "our-offerings",
+  "fields": [
+    {
+      "component": "reference",
+      "valueType": "string",
+      "name": "image",
+      "label": "Hero Image",
+      "multi": false
+    },
+    {
+      "component": "reference",
+      "valueType": "string",
+      "name": "overlay",
+      "label": "Decorative Overlay Image",
+      "multi": false
+    },
+    {
+      "component": "text",
+      "valueType": "string",
+      "name": "title",
+      "label": "Title / Eyebrow",
+      "value": "Investment Needs"
+    },
+    {
+      "component": "richtext",
+      "valueType": "string",
+      "name": "description",
+      "label": "Description",
+      "value": ""
+    },
+    {
+      "component": "aem-content",
+      "valueType": "string",
+      "name": "ctaLink",
+      "label": "CTA Link"
+    },
+    {
+      "component": "text",
+      "valueType": "string",
+      "name": "ctaLabel",
+      "label": "CTA Label",
+      "value": "Know more"
+    }
+  ]
+}

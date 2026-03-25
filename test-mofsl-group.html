@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MOFSL Group Block — Test</title>
+  <link rel="stylesheet" href="styles/pwm-tokens.css">
+  <link rel="stylesheet" href="blocks/mofsl-group/mofsl-group.css">
+  <style>
+    /* Minimal reset so the block renders standalone */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #f8f3ef; }
+  </style>
+</head>
+<body class="appear">
+
+  <!--
+    Simulating the AEM EDS authored table structure.
+    The block decorator will read these rows and rebuild the DOM.
+  -->
+  <div class="mofsl-group-wrapper">
+    <div class="mofsl-group-container">
+      <div class="mofsl-group block" data-block-name="mofsl-group" data-block-status="loading">
+
+        <!-- Row 0: Section heading -->
+        <div>
+          <div>A part of the [MOFSL group]</div>
+          <div></div>
+        </div>
+
+        <!-- Row 1: Primary title | Primary stat value -->
+        <div>
+          <div>Private Wealth Management</div>
+          <div>₹ 1.9 Lakh Cr</div>
+        </div>
+
+        <!-- Row 2: Primary description | Stat label -->
+        <div>
+          <div>380+ trusted Wealth Managers Caters to 300+ Hurun India families</div>
+          <div>AUM</div>
+        </div>
+
+        <!-- Sub row pair 1: Wealth Management -->
+        <div>
+          <div><a href="#">Wealth Management</a></div>
+          <div>2,500+ locations covering 98% pin codes</div>
+        </div>
+        <div>
+          <div>₹ 3.1 Lakh Cr</div>
+          <div>AUM</div>
+        </div>
+
+        <!-- Sub row pair 2: Capital Market Solutions -->
+        <div>
+          <div><a href="#">Capital Market Solutions</a></div>
+          <div>100+ research experts ₹49,000+ Cr deals</div>
+        </div>
+        <div>
+          <div>330+ Stocks</div>
+          <div>#1 in QIP, IPO &amp; Rights Issues</div>
+        </div>
+
+        <!-- Sub row pair 3: Asset Management -->
+        <div>
+          <div><a href="#">Asset Management</a></div>
+          <div>One of India's fastest growing AMCs</div>
+        </div>
+        <div>
+          <div>₹1.8 Lakh Cr</div>
+          <div>AUM</div>
+        </div>
+
+        <!-- Sub row pair 4: Alternates -->
+        <div>
+          <div><a href="#">Alternates</a></div>
+          <div>5th Private equity fund and 6th Real Estate fund raised</div>
+        </div>
+        <div>
+          <div>₹ 23,000 Cr</div>
+          <div>funds raised</div>
+        </div>
+
+        <!-- Sub row pair 5: Principal Investments -->
+        <div>
+          <div><a href="#">Principal Investments</a></div>
+          <div>~19% XIRR portfolio, since 2014</div>
+        </div>
+        <div>
+          <div>₹9,000 Cr</div>
+          <div>invested</div>
+        </div>
+
+        <!-- Sub row pair 6: Philanthropy -->
+        <div>
+          <div><a href="#">Philanthropy</a></div>
+          <div>Supporting Education and Healthcare causes across the nation</div>
+        </div>
+        <div>
+          <div>₹9,000 Cr</div>
+          <div>contributed</div>
+        </div>
+
+        <!-- Decorative image (last row) -->
+        <div>
+          <div><img src="icons/mofsl-knot.svg" alt="" /></div>
+          <div></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import decorate from './blocks/mofsl-group/mofsl-group.js';
+    const block = document.querySelector('.mofsl-group.block');
+    decorate(block);
+    block.dataset.blockStatus = 'loaded';
+  </script>
+</body>
+</html>

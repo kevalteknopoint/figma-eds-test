@@ -1,0 +1,82 @@
+/*
+ * HDBFS Design Tokens
+ * Matches the HDB Financial Services brand colours, typography, and spacing.
+ */
+
+:root {
+  /* ── Brand colours ─────────────────────────────────────── */
+  --hdbfs-color-red:          #c8102e;   /* primary brand red */
+  --hdbfs-color-red-dark:     #a00d26;   /* hover / darker red */
+  --hdbfs-color-red-light:    #f9e4e7;   /* tint for backgrounds */
+  --hdbfs-color-gold:         #d4a017;   /* accent gold */
+  --hdbfs-color-white:        #ffffff;
+  --hdbfs-color-black:        #111111;
+  --hdbfs-color-text:         #222222;
+  --hdbfs-color-text-light:   #555555;
+  --hdbfs-color-text-muted:   #888888;
+  --hdbfs-color-bg:           #f5f5f5;
+  --hdbfs-color-bg-dark:      #1a1a2e;   /* dark navy – footer / hero overlay */
+  --hdbfs-color-border:       #e0e0e0;
+  --hdbfs-color-nav-bg:       #ffffff;
+  --hdbfs-color-ticker-bg:    #c8102e;
+  --hdbfs-color-section-bg:   #f8f8f8;
+  --hdbfs-color-card-bg:      #ffffff;
+
+  /* ── Typography ────────────────────────────────────────── */
+  --hdbfs-font-family:        'Roboto', Arial, sans-serif;
+  --hdbfs-font-heading:       'Roboto Condensed', Arial, sans-serif;
+
+  --hdbfs-fw-regular:         400;
+  --hdbfs-fw-medium:          500;
+  --hdbfs-fw-bold:            700;
+
+  --hdbfs-fs-xs:              12px;
+  --hdbfs-fs-sm:              13px;
+  --hdbfs-fs-base:            14px;
+  --hdbfs-fs-md:              16px;
+  --hdbfs-fs-lg:              18px;
+  --hdbfs-fs-xl:              20px;
+  --hdbfs-fs-2xl:             24px;
+  --hdbfs-fs-3xl:             28px;
+  --hdbfs-fs-4xl:             32px;
+  --hdbfs-fs-5xl:             40px;
+
+  /* ── Spacing ────────────────────────────────────────────── */
+  --hdbfs-space-4:            4px;
+  --hdbfs-space-8:            8px;
+  --hdbfs-space-12:           12px;
+  --hdbfs-space-16:           16px;
+  --hdbfs-space-20:           20px;
+  --hdbfs-space-24:           24px;
+  --hdbfs-space-32:           32px;
+  --hdbfs-space-40:           40px;
+  --hdbfs-space-48:           48px;
+  --hdbfs-space-64:           64px;
+  --hdbfs-space-80:           80px;
+
+  /* ── Layout ─────────────────────────────────────────────── */
+  --hdbfs-max-width:          1200px;
+  --hdbfs-nav-height:         70px;
+  --hdbfs-radius-sm:          4px;
+  --hdbfs-radius-md:          8px;
+  --hdbfs-radius-lg:          12px;
+  --hdbfs-section-pad-x:      16px;
+  --hdbfs-section-pad-y:      60px;
+
+  /* ── Shadows ─────────────────────────────────────────────── */
+  --hdbfs-shadow-sm:          0 2px 8px rgba(0,0,0,.08);
+  --hdbfs-shadow-md:          0 4px 16px rgba(0,0,0,.12);
+  --hdbfs-shadow-card:        0 2px 12px rgba(0,0,0,.1);
+}
+
+@media (width >= 768px) {
+  :root {
+    --hdbfs-section-pad-x:    32px;
+  }
+}
+
+@media (width >= 1200px) {
+  :root {
+    --hdbfs-section-pad-x:    40px;
+  }
+}

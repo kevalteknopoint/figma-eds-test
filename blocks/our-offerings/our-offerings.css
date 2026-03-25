@@ -1,0 +1,202 @@
+/* =============================================================
+   OUR OFFERINGS — Two-column offering card (image + text)
+   Figma: Desktop node 1:2991
+   Pattern: split card — hero image left, content right
+   ============================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import url('../../styles/pwm-tokens.css');
+
+/* ── Reset EDS wrappers ── */
+.our-offerings-wrapper,
+.our-offerings-container {
+  max-width: unset;
+  padding: 0;
+}
+
+/* ── Outer section ── */
+.our-offerings {
+  background-color: var(--pwm-color-gold-100);
+  font-family: var(--pwm-font-body);
+  padding: var(--pwm-space-40) var(--pwm-section-padding-x);
+}
+
+/* ── Card container — split layout ── */
+.our-offerings__card {
+  max-width: var(--pwm-content-max);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--pwm-space-24);
+  align-items: center;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   LEFT — Image panel
+   ───────────────────────────────────────────────────────────── */
+.our-offerings__image-panel {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  background-color: var(--pwm-color-white);
+  border-radius: var(--pwm-radius-sm);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Hero picture — fills the panel, oversized for crop effect */
+.our-offerings__hero-picture {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.our-offerings__hero-picture img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Decorative mask / knot overlay */
+.our-offerings__mask {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%) rotate(180deg) scaleY(-1);
+  width: 120px;
+  height: 200px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.our-offerings__mask picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.our-offerings__mask img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   RIGHT — Content panel
+   ───────────────────────────────────────────────────────────── */
+.our-offerings__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pwm-space-20);
+  width: 100%;
+}
+
+/* Text group: title + description */
+.our-offerings__text-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pwm-space-12);
+}
+
+/* Eyebrow / title — Sub Header/Large */
+.our-offerings__title {
+  font-family: var(--pwm-font-body);
+  font-size: var(--pwm-font-size-subheader, 20px);
+  font-weight: var(--pwm-fw-medium);
+  line-height: var(--pwm-font-lh-subheader, 28px);
+  color: var(--pwm-color-gold-700);
+  margin: 0;
+}
+
+/* Description — Body/Medium-regular */
+.our-offerings__desc {
+  font-family: var(--pwm-font-body);
+  font-size: var(--pwm-font-size-body-md);
+  font-weight: var(--pwm-fw-regular);
+  line-height: var(--pwm-font-lh-body-lg);
+  color: var(--pwm-color-blue-primary);
+  margin: 0;
+}
+
+/* CTA — Text Link/Medium (underlined) */
+.our-offerings__cta {
+  font-family: var(--pwm-font-body);
+  font-size: var(--pwm-font-size-body-md);
+  font-weight: var(--pwm-fw-regular);
+  line-height: var(--pwm-font-lh-body-lg);
+  color: var(--pwm-color-blue-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  transition: opacity var(--pwm-duration-fast) ease;
+  width: fit-content;
+}
+
+.our-offerings__cta:hover,
+.our-offerings__cta:focus-visible {
+  opacity: 0.75;
+  outline-offset: 2px;
+}
+
+/* ── Desktop (≥ 900px) ────────────────────────────────────── */
+@media (width >= 900px) {
+  .our-offerings__card {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--pwm-space-40);
+  }
+
+  /* Image panel — Figma: 608×342 */
+  .our-offerings__image-panel {
+    width: 608px;
+    min-width: 608px;
+    height: 342px;
+  }
+
+  /* Hero picture oversized for desktop crop effect (Figma: 678×552 at -52, -75) */
+  .our-offerings__hero-picture {
+    /* Slightly extend beyond the panel to achieve the Figma crop */
+    left: -52px;
+    top: -75px;
+    width: calc(100% + 52px);
+    height: calc(100% + 150px);
+  }
+
+  .our-offerings__hero-picture img {
+    object-position: left top;
+  }
+
+  /* Decorative mask — Figma: 177×306 at right: ~20px, top ~17px */
+  .our-offerings__mask {
+    right: 20px;
+    top: 17px;
+    transform: rotate(180deg) scaleY(-1);
+    width: 177px;
+    height: 306px;
+  }
+
+  /* Content panel — Figma: 584px */
+  .our-offerings__content {
+    width: 584px;
+    flex-shrink: 0;
+  }
+
+  /* Title — Sub Header/Large at desktop size */
+  .our-offerings__title {
+    font-size: var(--pwm-font-size-subheader-lg, 24px);
+    line-height: var(--pwm-font-lh-subheader-lg, 32px);
+  }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .our-offerings * {
+    transition: none !important;
+  }
+}
